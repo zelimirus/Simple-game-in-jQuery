@@ -1,0 +1,291 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Presidental</title>
+<body>
+<!-- <script src="pixi.js"></script> -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/pixi.js/2.2.3/pixi.js"></script>
+<script type="text/javascript">
+
+//constants
+    var IMG_MACHINE = "http://res.cloudinary.com/rmarcello/image/upload/v1431599260/slot-machine_fhrtsl.png";
+    var IMG_MACHINE2 = "http://res.cloudinary.com/rmarcello/image/upload/v1431599260/slot-machine_fhrtsl.png";
+    var IMG_MACHINE3 = "http://res.cloudinary.com/rmarcello/image/upload/v1431599260/slot-machine_fhrtsl.png";
+
+    // var IMG_BODY= "http://res.cloudinary.com/rmarcello/image/upload/v1431599246/body_btvubu.png";
+    var IMG_BUTTON = "http://res.cloudinary.com/rmarcello/image/upload/v1431599254/button_se5uul.png";
+        
+    var STATE_ZERO = 0;
+    var STATE_INIT=1;
+    var STATE_MOVING=2;
+    var STATE_CHECK_WIN=3;
+        
+    var SLOT_NUMBER = 5;
+    var INITIAL_X = 330;
+    var TILE_HEIGHT = 100;
+    var TILE_WIDTH = TILE_HEIGHT;
+    var N_CYCLE = 5;
+    var TOT_TILES= 7;
+        
+    /*
+    * 0: fermo
+    * 1: moving
+    * 2: check win
+    */
+    var gameStatus=0;
+    var finalTileY1=[];
+    var finalTileY2=[];
+    var finalTileY3=[];
+    var slotSprite1=[];
+    var slotSprite2=[];
+    var slotSprite3=[];
+    var preChoosedPosition1 = [];
+    var preChoosedPosition2 = [];
+    var preChoosedPosition3 = [];
+    
+    var stage = new PIXI.Stage(0x000000);
+    var renderer = PIXI.autoDetectRenderer(1200,600,
+      {antialiasing: false, transparent: false, resolution: 1}  
+    );
+    document.body.appendChild(renderer.view);
+    stage.interactive=true;
+    
+    //loading images
+    var loader = new PIXI.AssetLoader(
+        [IMG_MACHINE,IMG_BUTTON]
+    );
+    loader.onComplete = setup;
+    loader.load();
+    
+    
+        
+    //setup
+    function setup() {
+      // console.log("setup()");
+        
+      // var texture = PIXI.TextureCache[IMG_BODY];
+      // bodySprite = new PIXI.Sprite(texture);
+      // bodySprite.x=0;
+      // bodySprite.y=0;
+      // stage.addChild(bodySprite);
+        
+    texture = PIXI.TextureCache[IMG_BUTTON];
+      buttonSprite = new PIXI.Sprite(texture);
+      buttonSprite.x=900;
+      buttonSprite.y=50;
+      stage.addChild(buttonSprite);
+    buttonSprite.interactive=true;  
+    buttonSprite.click = function (e) {
+        startAnimation();        
+    }
+    
+    buttonSprite.touchstart = function (e) {
+        startAnimation();        
+    }
+      
+      
+    //tiles
+      texture1=PIXI.TextureCache[IMG_MACHINE];
+      preChoosedPosition1 = [1,1,1,1,1];
+
+        for(var i=0; i<SLOT_NUMBER; i++) {
+        slotSprite1[i] = new PIXI.TilingSprite(texture1, TILE_WIDTH, TILE_HEIGHT+20);
+        slotSprite1[i].tilePosition.x = 0;
+        slotSprite1[i].tilePosition.y = (-preChoosedPosition1[i]*TILE_HEIGHT)+10;
+        slotSprite1[i].x= INITIAL_X +(i*110);
+        slotSprite1[i].y= 80;
+        stage.addChild( slotSprite1[i] );
+      }
+
+      texture2=PIXI.TextureCache[IMG_MACHINE2];
+      preChoosedPosition2 = [2,2,2,2,2];
+
+
+        for(var i=0; i<SLOT_NUMBER; i++) {
+        slotSprite2[i] = new PIXI.TilingSprite(texture2, TILE_WIDTH, TILE_HEIGHT+20);
+        slotSprite2[i].tilePosition.x = 0;
+        slotSprite2[i].tilePosition.y = (-preChoosedPosition2[i]*TILE_HEIGHT)+10;
+        slotSprite2[i].x= INITIAL_X +(i*110);
+        slotSprite2[i].y= 210;
+        stage.addChild( slotSprite2[i] );
+      }
+
+
+      texture3=PIXI.TextureCache[IMG_MACHINE3];
+      preChoosedPosition3 = [3,3,3,3,3];  
+
+
+      for(var i=0; i<SLOT_NUMBER; i++) {
+        slotSprite3[i] = new PIXI.TilingSprite(texture3, TILE_WIDTH, TILE_HEIGHT+20);
+        slotSprite3[i].tilePosition.x = 0;
+        slotSprite3[i].tilePosition.y = (-preChoosedPosition3[i]*TILE_HEIGHT)+10;
+        slotSprite3[i].x= INITIAL_X +(i*110);
+        slotSprite3[i].y= 340;
+        stage.addChild( slotSprite3[i] );
+      }
+      draw();
+    }
+    
+    
+    var INC = [ 10,20,25,35,50 ];
+    
+    //functions draw
+    function draw() {
+        // console.info("draw("+gameStatus+")");
+        if(gameStatus==STATE_ZERO) {
+            gameStatus=STATE_INIT;
+        } else 
+      if(gameStatus==STATE_INIT) {
+          // console.log("waiting start");
+          gameStatus=STATE_CHECK_WIN;
+          
+      } else if(gameStatus==STATE_MOVING) {
+        // console.log("moving");
+         
+        for(var i=0; i<SLOT_NUMBER; i++) {
+            if( finalTileY1[i] > 0 ) {
+                slotSprite1[i].tilePosition.y = slotSprite1[i].tilePosition.y + INC[i];
+                finalTileY1[i]= finalTileY1[i] - INC[i];
+                //console.info( "dec.finalTile["+i+"]="+finalTileY[i] );
+            }
+             if( finalTileY2[i] > 0 ) {
+                slotSprite2[i].tilePosition.y = slotSprite2[i].tilePosition.y + INC[i];
+                finalTileY2[i]= finalTileY2[i] - INC[i];
+                //console.info( "dec.finalTile["+i+"]="+finalTileY[i] );
+            }
+             if( finalTileY3[i] > 0 ) {
+                slotSprite3[i].tilePosition.y = slotSprite3[i].tilePosition.y + INC[i];
+                finalTileY3[i]= finalTileY3[i] - INC[i];
+                //console.info( "dec.finalTile["+i+"]="+finalTileY[i] );
+            }            
+          }
+        
+        if( finalTileY1[0]-5 <= 0 ) {
+            gameStatus=STATE_CHECK_WIN;
+            
+        }
+
+         if( finalTileY2[0]-5 <= 0 ) {
+            gameStatus=STATE_CHECK_WIN;
+            
+        }
+
+         if( finalTileY3[0]-5 <= 0 ) {
+            gameStatus=STATE_CHECK_WIN;
+            
+        }
+        
+        //  gameStatus = STATE_CHECK_WIN;
+          
+      } else if(gameStatus==STATE_CHECK_WIN) {
+        // console.log("checking win");
+        var test=true;
+        for(var i=1; i<SLOT_NUMBER; i++) {
+            // if( preChoosedPosition1[i]!=preChoosedPosition1[i-1]) {
+
+            // }
+            // if( preChoosedPosition2[i]!=preChoosedPosition2[i-1]) {
+                // test=false;
+               
+
+            // }
+            if( preChoosedPosition3[i]!=preChoosedPosition3[i-1]) {
+                var union = preChoosedPosition1.concat(preChoosedPosition2);
+                store = union.concat(preChoosedPosition3);
+
+                var frequency = {};  // array of frequency.
+        var max = 0;  // holds the max frequency.
+        var result;   // holds the max frequency element.
+        for(var v in store) {
+                frequency[store[v]]=(frequency[store[v]] || 0)+1; // increment frequency.
+                if(frequency[store[v]] > max) { // is this frequency > max so far ?
+                        max = frequency[store[v]];  // update max.
+                        result = store[v];          // update result.
+                }
+        }
+        alert(result);
+
+            }
+        }
+        // switch(result) {
+        //     case 0:
+        //         alert('0 je pobednik');
+        //         startAnimation(); 
+        //         break;
+        //     case 1:
+        //         alert('1 je pobednik');
+        //         startAnimation(); 
+        //         break;
+        //      case 2:
+        //         alert('2 je pobednik');
+        //         break;
+        //     case 3:
+        //         alert('3 je pobednik');
+        //         break;
+        //     case 4:
+        //         alert('4 je pobednik');
+        //         break;
+        //     case 5:
+        //         alert('5 je pobednik');
+        //         break;
+        //       case 6:
+        //         alert('6 je pobednik');
+        //         break; 
+        // }
+        return; //no more animation
+      }
+      renderer.render(stage);
+      requestAnimationFrame(draw);
+    }//draw
+
+    function startAnimation() {
+        if( gameStatus==STATE_INIT || gameStatus==STATE_CHECK_WIN ) {
+            preChoosedPosition1 = getRandomPositions();
+            preChoosedPosition2 = getRandomPositions();
+            preChoosedPosition3 = getRandomPositions();
+            for(var i=0; i<SLOT_NUMBER; i++) {
+                preChoosedPosition1[i] = getRandomInt(0,6);
+                preChoosedPosition2[i] = getRandomInt(0,6);
+                preChoosedPosition3[i] = getRandomInt(0,6);
+                // console.info( "preChoosedPosition1["+i+"]="+preChoosedPosition1[i] );
+                // console.info( "preChoosedPosition2["+i+"]="+preChoosedPosition2[i] );
+                // console.info( "preChoosedPosition3["+i+"]="+preChoosedPosition3[i] );
+
+                slotSprite1[i].tilePosition.y = (-preChoosedPosition1[i]*TILE_HEIGHT) +10;
+                finalTileY1[i]= (N_CYCLE*TILE_HEIGHT*TOT_TILES);
+                slotSprite2[i].tilePosition.y = (-preChoosedPosition2[i]*TILE_HEIGHT) +10;
+                finalTileY2[i]= (N_CYCLE*TILE_HEIGHT*TOT_TILES);
+                slotSprite3[i].tilePosition.y = (-preChoosedPosition3[i]*TILE_HEIGHT) +10;
+                finalTileY3[i]= (N_CYCLE*TILE_HEIGHT*TOT_TILES);
+
+                // console.info( "tilePosition.y["+i+"]="+slotSprite1[i].tilePosition.y );
+                // console.info( "finalTile1["+i+"]="+finalTileY1[i] );
+
+                // console.info( "tilePosition.y["+i+"]="+slotSprite2[i].tilePosition.y );
+                // console.info( "finalTile2["+i+"]="+finalTileY2[i] );
+
+                // console.info( "tilePosition.y["+i+"]="+slotSprite3[i].tilePosition.y );
+                // console.info( "finalTile3["+i+"]="+finalTileY3[i] );
+            }
+            gameStatus = STATE_MOVING;
+            draw();
+        }   
+    }
+        
+        
+    /**
+     * Returns a random integer between min (inclusive) and max (inclusive)
+     * Using Math.round() will give you a non-uniform distribution!
+     */
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+        
+    function getRandomPositions() {
+        var x = getRandomInt(0, 100);
+        if(x>50) {
+            x= getRandomInt(0,6);
+            return [x,x,x,x,x];
+        }
+        return [getRandomInt(0,6),getRandomInt(0,6),getRandomInt(0,6)];   
+    }
+</script>
