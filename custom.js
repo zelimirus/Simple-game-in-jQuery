@@ -1,10 +1,10 @@
 //constants
-    var imgSlot = "slot4.png";
-    var imgSlot2 = "slot4.png";
-    var imgSlot3 = "slot4.png";
+    var imgSlot = "images/slot3.png";
+    var imgSlot2 = "images/slot3.png";
+    var imgSlot3 = "images/slot3.png";
 
-    var IMG_BODY= "frame.png";
-    var img_button = "button.png";
+    var IMG_BODY= "images/frame.png";
+    var img_button ="images/start.png";
         
     var STATE_ZERO = 0;
     var STATE_INIT=1;
@@ -36,14 +36,14 @@
     var preChoosedPosition2 = [];
     var preChoosedPosition3 = [];
     
-    var stage = new PIXI.Stage(0x333333);
+    var stage = new PIXI.Stage(0xFFFFFF);
     var renderer = PIXI.autoDetectRenderer(1000,600,
       {antialiasing: false, transparent: false, resolution: 1}  
     );
     document.getElementById("pixi-div").appendChild(renderer.view);
     stage.interactive=true;
     
-    //loading images
+    // loading images
     var loader = new PIXI.AssetLoader(
         [imgSlot,img_button,IMG_BODY]
     );
@@ -64,32 +64,26 @@ var style = {
     wordWrapWidth : 440
 };
 
-var richText = new PIXI.Text('Mitar vs Metal',style);
-richText.x = 320;
-richText.y = 10;
-stage.addChild(richText);
 
-
+        var message = new PIXI.Text('welcome',style);
+message.x = 320;
+message.y = 10;
+stage.addChild(message);
 
         
     //setup
     function setup() {
       // console.log("setup()");
-        
-      var texture = PIXI.TextureCache[IMG_BODY];
-      bodySprite = new PIXI.Sprite(texture);
-      bodySprite.x=165;
-      bodySprite.y=50;
-      bodySprite.width=680;
-      bodySprite.height=500;
-      stage.addChild(bodySprite);
+
 
 
         
     texture = PIXI.TextureCache[img_button];
       buttonSprite = new PIXI.Sprite(texture);
-      buttonSprite.x=900;
-      buttonSprite.y=50;
+      buttonSprite.x=450;
+      buttonSprite.y=500;
+      buttonSprite.height=100;
+      buttonSprite.width=100;
       stage.addChild(buttonSprite);
     buttonSprite.interactive=true;  
     buttonSprite.click = function (e) {
@@ -99,6 +93,7 @@ stage.addChild(richText);
     
     buttonSprite.touchstart = function (e) {
         startAnimation();
+
 
     }
       
@@ -143,6 +138,15 @@ stage.addChild(richText);
         stage.addChild( slotSprite3[i] );
       }
       draw();
+
+          var texture = PIXI.Texture.fromImage(IMG_BODY);
+      // var texture = PIXI.TextureCache[];
+      bodySprite = new PIXI.Sprite(texture);
+      bodySprite.x=208;
+      bodySprite.y=93;
+      bodySprite.width=608;
+      bodySprite.height=378;
+      stage.addChild(bodySprite);
     }
     
     
@@ -271,9 +275,9 @@ stage.addChild(richText);
                    if (sortThisBaby(result2)) {
                     switch (indexOfMax(result)) {
                         case 0:
-
-                            alert("winner is 0");
-                          
+                        
+                        
+                           
 
                             // if (candidate == "vucic") {
                             //     creditCharger();
@@ -289,7 +293,9 @@ stage.addChild(richText);
 
                             break;
                         case 1:
-                            alert("winner is 1");
+                                 
+                                
+                        
                             // $('.dacic').addClass('winner');
                             // $('li').addClass('winner-background');
                             // $('.winner-candidate').css("background","url('assets/images/dacic-ram.png') no-repeat center");
@@ -307,7 +313,7 @@ stage.addChild(richText);
 
                             break;
                         case 2:
-                            alert("winner is 2");
+                                  
                             // $('.toma').addClass('winner');
                             // $("li").addClass('winner-background');
                             // $('.winner-candidate').css("background","url('assets/images/toma-ram.png') no-repeat center");
@@ -325,8 +331,8 @@ stage.addChild(richText);
 
                             break;
                         case 3:
-                            alert("winner is 3");
-                            // $('.tadic').addClass('winner');
+                                
+                         // $('.tadic').addClass('winner');
                             // $("li").addClass('winner-background');
                             // $('.winner-candidate').css("background","url('assets/images/tadic-ram.png') no-repeat center");
                             // if (candidate == "tadic") {
@@ -343,7 +349,7 @@ stage.addChild(richText);
 
                             break;
                         case 4:
-                            alert("winner is 4");
+                                  
                             // $('.canak').addClass('winner');
                             // $("li").addClass('winner-background');
                             // $('.winner-candidate').css("background","url('assets/images/canak-ram.png') no-repeat center");
@@ -362,8 +368,8 @@ stage.addChild(richText);
                             break;
                         case 5:
 
-                            alert("winner is 5");
-                            // $('.ceda').addClass('winner');
+                                 
+                        // $('.ceda').addClass('winner');
                             // $("li").addClass('winner-background');
                             // $('.winner-candidate').css("background","url('assets/images/ceda-ram.png') no-repeat center");
                             // if (candidate == "ceda") {
@@ -381,8 +387,8 @@ stage.addChild(richText);
                             break;
                         case 6:
 
-                            alert("winner is 6");
-                            // $('.seselj').addClass('winner');
+                                
+                         // $('.seselj').addClass('winner');
                             // $("li").addClass('winner-background');
                             // $('.winner-candidate').css("background","url('assets/images/seselj-ram.png') no-repeat center");
                             // if (candidate == "seselj") {
@@ -402,8 +408,10 @@ stage.addChild(richText);
                 } else {
 
                       startAnimation()
-                    // $('.playFancy').click();
-                    // $('#message').text(equalMessage);
+                    
+                    
+
+                        renderer.render(stage);
 
                 }
 
