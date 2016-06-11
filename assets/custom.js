@@ -18,11 +18,15 @@ function myFunction(response) {
     var STATE_MOVING = 2;
     var STATE_CHECK_WIN = 3;
     var SLOT_NUMBER = 5;
-    var INITIAL_X = 250;
+    var INITIAL_X =  395;
     var TILE_HEIGHT = 100;
     var TILE_WIDTH = 100;
     var N_CYCLE = 5;
     var TOT_TILES = 7;
+    var selectCandidateInitalY = 550;
+    var selectCandidateInitalX = 387;
+    var selectCandidateHight = 70;
+    var selectCandidateWidth = 70;
 
     /*
      * 0: fermo
@@ -41,9 +45,11 @@ function myFunction(response) {
     var preChoosedPosition1 = [];
     var preChoosedPosition2 = [];
     var preChoosedPosition3 = [];
+    var yourCandidate = 0;
+    var finalCandidate = '';
 
-    var renderer = PIXI.autoDetectRenderer(1200, 600, {
-        backgroundColor: 0x1099bb
+    var renderer = PIXI.autoDetectRenderer(1300, 800, {
+        backgroundColor: 0xFFFFFF
     });
     document.getElementById("pixi-div").appendChild(renderer.view);
 
@@ -52,36 +58,339 @@ function myFunction(response) {
 
     // create a texture from an image path
     var imgSlot = imgSlot2 = imgSlot3 = config.imgSlot;
-    var imgBody = config.imgBody;
-    var imgButton = config.imgButton;
 
 
 
-    var texture1 = PIXI.Texture.fromImage(imgBody);
-    var texture2 = PIXI.Texture.fromImage(imgButton);
+
+    var texture1 = PIXI.Texture.fromImage(config.imgBody);
+    var texture2 = PIXI.Texture.fromImage(config.imgButton);
+    var texture4 = PIXI.Texture.fromImage(config.imgButtonDown);
+    var textureVucic = PIXI.Texture.fromImage(config.selectVucic);
+    var textureDacic = PIXI.Texture.fromImage(config.selectDacic);
+    var textureToma = PIXI.Texture.fromImage(config.selectToma);
+    var textureTadic = PIXI.Texture.fromImage(config.selectTadic);
+    var textureCeda = PIXI.Texture.fromImage(config.selectCeda);
+    var textureCanak = PIXI.Texture.fromImage(config.selectCanak);
+    var textureSeselj = PIXI.Texture.fromImage(config.selectSeselj);
+    var textureVucicFrame = PIXI.Texture.fromImage(config.selectVucicFrame);
+    var textureDacicFrame = PIXI.Texture.fromImage(config.selectDacicFrame);
+    var textureTomaFrame = PIXI.Texture.fromImage(config.selectTomaFrame);
+    var textureTadicFrame = PIXI.Texture.fromImage(config.selectTadicFrame);
+    var textureCedaFrame = PIXI.Texture.fromImage(config.selectCedaFrame);
+    var textureCanakFrame = PIXI.Texture.fromImage(config.selectCanakFrame);
+    var textureSeseljFrame = PIXI.Texture.fromImage(config.selectSeseljFrame);
+
+   
+    var selectVucic = new PIXI.Sprite(textureVucicFrame);
+
+    selectVucic.height = selectCandidateHight;
+    selectVucic.width = selectCandidateWidth;
+    selectVucic.y = selectCandidateInitalY;
+    selectVucic.x = selectCandidateInitalX;
+
+    stage.addChild(selectVucic);
+    selectVucic.interactive = true;
+    selectVucic
+
+     .on('mouseover', onVucicDown)
+     .on('touchstart', onVucicDown)
+     .on('click', addVucic)
+
+        // set the mouseup and touchend callback...
+    .on('mouseout', onVucicUp)
+    .on('touchend', onVucicUp)
+
+    function onVucicDown(){
+        this.isdown = true;
+        this.texture = textureVucic;
+        
+    }
+
+    function onVucicUp(){
+        this.isdown = false;
+        this.texture = textureVucicFrame;
+    }
+
+    function addVucic(){
+        yourCandidateImg.texture = textureVucicFrame;
+        yourCandidate = 0;
+    }
+
+
+    var selectDacic = new PIXI.Sprite(textureDacicFrame);
+
+    selectDacic.height = selectCandidateHight;
+    selectDacic.width = selectCandidateWidth;
+    selectDacic.y = selectCandidateInitalY;
+    selectDacic.x = selectCandidateInitalX + 80;
+
+    stage.addChild(selectDacic);
+    selectDacic.interactive = true;
+    selectDacic
+
+     .on('mouseover', onDacicDown)
+     .on('touchstart', onDacicDown)
+     .on('click', addDacic)
+
+        // set the mouseup and touchend callback...
+    .on('mouseout', onDacicUp)
+    .on('touchend', onDacicUp)
+
+    function onDacicDown(){
+        this.isdown = true;
+        this.texture = textureDacic;
+        
+    }
+
+    function onDacicUp(){
+        this.isdown = false;
+        this.texture = textureDacicFrame;
+    }
+
+     function addDacic(){
+        yourCandidateImg.texture = textureDacicFrame;
+        yourCandidate = 1;
+    }
+
+
+
+    var selectToma = new PIXI.Sprite(textureTomaFrame);
+
+    selectToma.height = selectCandidateHight;
+    selectToma.width = selectCandidateWidth;
+    selectToma.y = selectCandidateInitalY;
+    selectToma.x = selectCandidateInitalX + 160;
+
+    stage.addChild(selectToma);
+    selectToma.interactive = true;
+    selectToma
+
+     .on('mouseover', onTomaDown)
+     .on('touchstart', onTomaDown)
+     .on('click', addToma)
+
+        // set the mouseup and touchend callback...
+    .on('mouseout', onTomaUp)
+    .on('touchend', onTomaUp)
+
+    function onTomaDown(){
+        this.isdown = true;
+        this.texture = textureToma;
+        
+    }
+
+    function onTomaUp(){
+        this.isdown = false;
+        this.texture = textureTomaFrame;
+    }
+
+     function addToma(){
+        yourCandidateImg.texture = textureTomaFrame;
+        yourCandidate = 2;
+    }
+
+
+
+    var selectTadic = new PIXI.Sprite(textureTadicFrame);
+
+    selectTadic.height = selectCandidateHight;
+    selectTadic.width = selectCandidateWidth;
+    selectTadic.y = selectCandidateInitalY;
+    selectTadic.x = selectCandidateInitalX + 240;
+
+    stage.addChild(selectTadic);
+    selectTadic.interactive = true;
+    selectTadic
+
+     .on('mouseover', onTadicDown)
+     .on('touchstart', onTadicDown)
+     .on('click', addTadic)
+
+        // set the mouseup and touchend callback...
+    .on('mouseout', onTadicUp)
+    .on('touchend', onTadicUp)
+
+    function onTadicDown(){
+        this.isdown = true;
+        this.texture = textureTadic;
+        
+    }
+
+    function onTadicUp(){
+        this.isdown = false;
+        this.texture = textureTadicFrame;
+    }
+
+    function addTadic(){
+        yourCandidateImg.texture = textureTadicFrame;
+        yourCandidate = 3;
+    }
+
+
+    var selectCeda = new PIXI.Sprite(textureCedaFrame);
+
+    selectCeda.height = selectCandidateHight;
+    selectCeda.width = selectCandidateWidth;
+    selectCeda.y = selectCandidateInitalY;
+    selectCeda.x = selectCandidateInitalX + 320;
+
+    stage.addChild(selectCeda);
+    selectCeda.interactive = true;
+    selectCeda
+
+     .on('mouseover', onCedaDown)
+     .on('touchstart', onCedaDown)
+     .on('click', addCeda)
+
+        // set the mouseup and touchend callback...
+    .on('mouseout', onCedaUp)
+    .on('touchend', onCedaUp)
+
+    function onCedaDown(){
+        this.isdown = true;
+        this.texture = textureCeda;
+        
+    }
+
+    function onCedaUp(){
+        this.isdown = false;
+        this.texture = textureCedaFrame;
+    }
+
+    function addCeda(){
+        yourCandidateImg.texture = textureCedaFrame;
+        yourCandidate = 4;
+    }
+
+
+    var selectCanak = new PIXI.Sprite(textureCanakFrame);
+
+    selectCanak.height = selectCandidateHight;
+    selectCanak.width = selectCandidateWidth;
+    selectCanak.y = selectCandidateInitalY;
+    selectCanak.x = selectCandidateInitalX + 400;
+
+    stage.addChild(selectCanak);
+    selectCanak.interactive = true;
+    selectCanak
+
+     .on('mouseover', onCanakDown)
+     .on('touchstart', onCanakDown)
+     .on('click', addCanak)
+
+        // set the mouseup and touchend callback...
+    .on('mouseout', onCanakUp)
+    .on('touchend', onCanakUp)
+
+    function onCanakDown(){
+        this.isdown = true;
+        this.texture = textureCanak;
+        
+    }
+
+    function onCanakUp(){
+        this.isdown = false;
+        this.texture = textureCanakFrame;
+    }
+
+     function addCanak(){
+        yourCandidateImg.texture = textureCanakFrame;
+        yourCandidate = 5;
+    }
+
+    var selectSeselj = new PIXI.Sprite(textureSeseljFrame);
+
+    selectSeselj.height = selectCandidateHight;
+    selectSeselj.width = selectCandidateWidth;
+    selectSeselj.y = selectCandidateInitalY;
+    selectSeselj.x = selectCandidateInitalX + 480;
+
+    stage.addChild(selectSeselj);
+    selectSeselj.interactive = true;
+    selectSeselj
+
+     .on('mouseover', onSeseljDown)
+     .on('touchstart', onSeseljDown)
+     .on('click', addSeselj)
+
+        // set the mouseup and touchend callback...
+    .on('mouseout', onSeseljUp)
+    .on('touchend', onSeseljUp)
+
+    function onSeseljDown(){
+        this.isdown = true;
+        this.texture = textureSeselj;
+        
+    }
+
+    function onSeseljUp(){
+        this.isdown = false;
+        this.texture = textureSeseljFrame;
+    }
+
+      function addSeselj(){
+        yourCandidateImg.texture = textureSeseljFrame;
+        yourCandidate = 6;
+    }
+
+
+    yourCandidateImg = new PIXI.Sprite(textureVucicFrame);
+
+    yourCandidateImg.height = 250;
+    yourCandidateImg.width  = yourCandidateImg.height;
+    yourCandidateImg.y = 150;
+    yourCandidateImg.x = 50;
+
+    stage.addChild(yourCandidateImg);
+
+
+
+    winnerCandidateImg = new PIXI.Sprite(textureVucicFrame);
+
+    winnerCandidateImg.height = 250;
+    winnerCandidateImg.width  = winnerCandidateImg.height;
+    winnerCandidateImg.y = 150;
+    winnerCandidateImg.x = 1000;
+
+    stage.addChild(winnerCandidateImg);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     var messageStyle = {
-        font: 'bold 12px Arial'
+        font: 'bold 15px Arial',
+        fill : '#ff0000',
+        align : 'center'
     };
 
 
     var message = new PIXI.Text(config.welcomeMessage, messageStyle);
-    message.x = 470;
-    message.y = 60;
+    message.x = 610;
+    message.y = 50;
     stage.addChild(message);
 
     var creditStyle = {
         font: 'bold 18px Arial'
     }
     var credit = new PIXI.Text('CREDIT:', creditStyle);
-    credit.x = 450;
+    credit.x = 595  ;
     credit.y = 10;
     stage.addChild(credit);
 
 
     var creditValue = new PIXI.Text(config.creditValue, creditStyle);
-    creditValue.x = 520;
+    creditValue.x = 670;
     creditValue.y = 10;
     stage.addChild(creditValue);
 
@@ -90,24 +399,49 @@ function myFunction(response) {
     // create a new Sprite using the texture
     var imgButton = new PIXI.Sprite(texture2);
 
-    imgButton.x = 450;
-    imgButton.y = 500;
-    imgButton.height = 100;
+    imgButton.x = 600;
+    imgButton.y = 480;
+    imgButton.height = 40;
     imgButton.width = 100;
     imgButton.interactive = true;
     imgButton.click = function(e) {
         startAnimation();
+        finalCandidate = yourCandidate;
 
     }
     imgButton.touchstart = function(e) {
         startAnimation();
+         finalCandidate = yourCandidate;
     }
+
+        imgButton
+        // set the mousedown and touchstart callback...
+        .on('mousedown', onButtonDown)
+        .on('touchstart', onButtonDown)
+
+        // set the mouseup and touchend callback...
+        .on('mouseup', onButtonUp)
+        .on('touchend', onButtonUp)
+  
+        function onButtonDown()
+            {
+                this.isdown = true;
+                this.texture = texture4;
+                this.alpha = 1;
+            }
+
+        function onButtonUp()
+            {
+                this.isdown = false;
+
+                    this.texture = texture2;    
+            }
 
 
 
     var imgBody = new PIXI.Sprite(texture1);
 
-    imgBody.x = 208;
+    imgBody.x = 353;
     imgBody.y = 93;
     imgBody.width = 608;
     imgBody.height = 378;
@@ -286,18 +620,23 @@ function myFunction(response) {
                     if (sortThisBaby(result2)) {
                         switch (indexOfMax(result)) {
                             case 0:
-
-
-                                textUpadete(config.vucicMessage, 370, 80);
-                                newCredit = config.creditValue + 30;
-                                creditUpadete(newCredit);
+                        
+                                winnerCandidateImg.texture = textureVucicFrame;
                                 // message.text= 'vucic';
 
                                 // message.x= 800;
 
+                                if (finalCandidate == 0){
 
+                                    textUpadete(config.winnerMessage, 500, 65);
+                               
 
-
+                                }else{
+                                    textUpadete(config.vucicMessage, 500, 65);
+                                         audio = new Audio('assets/sounds/vucic/tisina.mp3');
+                                         audio.volume = volume;
+                                        audio.play();
+                                }
                                 // if (candidate == "vucic") {
                                 //     creditCharger();
 
@@ -312,7 +651,11 @@ function myFunction(response) {
 
                                 break;
                             case 1:
-                                textUpadete(config.dacicMessage, 370, 80);
+                                textUpadete(config.dacicMessage, 500, 65);
+                                winnerCandidateImg.texture = textureDacicFrame;
+
+                                if (finalCandidate == 1) alert('pobeda');
+
                                 // message.text= 'dacic';
                                 // message.x= 800;
 
@@ -335,7 +678,11 @@ function myFunction(response) {
 
                                 break;
                             case 2:
-                                textUpadete(config.tomaMessage, 370, 80);
+                                textUpadete(config.tomaMessage, 500, 65);
+                                winnerCandidateImg.texture = textureTomaFrame;
+
+                                if (finalCandidate == 2) alert('pobeda');
+
                                 // message.text= 'toma';
                                 // message.x= 800;
 
@@ -357,9 +704,12 @@ function myFunction(response) {
 
                                 break;
                             case 3:
-                                textUpadete(config.tadicMessage, 370, 80);
+                                textUpadete(config.tadicMessage, 500, 65);
+                                winnerCandidateImg.texture = textureTadicFrame;
                                 // message.text= 'tadic';
                                 // message.x= 800;
+
+                                if (finalCandidate == 3) alert('pobeda');
 
 
                                 // $('.tadic').addClass('winner');
@@ -380,10 +730,12 @@ function myFunction(response) {
                                 break;
                             case 4:
 
-                                textUpadete(config.cedaMessage, 370, 80);
+                                textUpadete(config.cedaMessage, 500, 65);
+                                winnerCandidateImg.texture = textureCedaFrame;
+
                                 // message.text= 'canak';
                                 // message.x= 800;
-
+                                if (finalCandidate == 4) alert('pobeda');
 
                                 // $('.canak').addClass('winner');
                                 // $("li").addClass('winner-background');
@@ -402,11 +754,12 @@ function myFunction(response) {
 
                                 break;
                             case 5:
-                                textUpadete(config.canakMessage, 370, 80);
+                                textUpadete(config.canakMessage, 500, 65);
+                                winnerCandidateImg.texture = textureCanakFrame;
+
+                                if (finalCandidate == 5) alert('pobeda');
                                 // message.text='ceda';
                                 // message.x= 800; 
-
-
                                 // $('.ceda').addClass('winner');
                                 // $("li").addClass('winner-background');
                                 // $('.winner-candidate').css("background","url('assets/images/ceda-ram.png') no-repeat center");
@@ -424,7 +777,11 @@ function myFunction(response) {
 
                                 break;
                             case 6:
-                                textUpadete(config.seseljMessage, 370, 80);
+                                textUpadete(config.seseljMessage, 500, 65);
+                                winnerCandidateImg.texture = textureSeseljFrame;
+
+                                if (finalCandidate == 6) alert('pobeda');
+
                                 // message.text= 'seselj';
 
 
@@ -449,7 +806,7 @@ function myFunction(response) {
 
 
                         startAnimation()
-                        textUpadete(config.equalMessage, 370, 80);
+                        textUpadete(config.equalMessage, 500, 65);
 
                     }
 
@@ -469,8 +826,6 @@ function myFunction(response) {
 
     function creditUpadete(value) {
         creditValue.text = value;
-        creditValue.x = 520;
-        creditValue.y = 10;
     }
 
     function getRandomInt(min, max) {

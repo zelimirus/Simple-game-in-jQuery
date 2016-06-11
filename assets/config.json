@@ -13,6 +13,21 @@
     "imgSlot": "images/slot3.png",
     "imgBody": "images/frame.png",
     "imgButton": "images/start.png",
+    "imgButtonDown": "images/start-down.png",
+    "selectVucic":"images/vucic.jpg",
+    "selectDacic":"images/dacic.jpg",
+    "selectToma":"images/toma.jpg",
+    "selectTadic":"images/tadic.jpg",
+    "selectCeda":"images/ceda.jpg",
+    "selectCanak":"images/canak.jpg",
+    "selectSeselj":"images/seselj.jpg",
+    "selectVucicFrame":"images/vucic-ram.png",
+    "selectDacicFrame":"images/dacic-ram.png",
+    "selectTomaFrame":"images/toma-ram.png",
+    "selectTadicFrame":"images/tadic-ram.png",
+    "selectCedaFrame":"images/ceda-ram.png",
+    "selectCanakFrame":"images/canak-ram.png",
+    "selectSeseljFrame":"images/seselj-ram.png",
     "creditValue":5000
 }  
 
