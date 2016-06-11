@@ -2,6 +2,10 @@
 var xmlhttp = new XMLHttpRequest();
 var url = "assets/config.json";
 
+
+
+
+
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         myFunction(xmlhttp.responseText);
@@ -633,8 +637,7 @@ function myFunction(response) {
 
                                 }else{
                                     textUpadete(config.vucicMessage, 500, 65);
-                                         audio = new Audio('assets/sounds/vucic/tisina.mp3');
-                                         audio.volume = volume;
+                                        var audio = new Audio('tisina.mp3');
                                         audio.play();
                                 }
                                 // if (candidate == "vucic") {
@@ -654,7 +657,13 @@ function myFunction(response) {
                                 textUpadete(config.dacicMessage, 500, 65);
                                 winnerCandidateImg.texture = textureDacicFrame;
 
-                                if (finalCandidate == 1) alert('pobeda');
+                                if (finalCandidate == 1){
+
+                                }else{
+                                    textUpadete(config.vucicMessage, 500, 65);
+                                        var audio = new Audio('assets/sounds/dacic/miljacka2.mp3');
+                                        audio.play();
+                                }
 
                                 // message.text= 'dacic';
                                 // message.x= 800;
@@ -681,7 +690,13 @@ function myFunction(response) {
                                 textUpadete(config.tomaMessage, 500, 65);
                                 winnerCandidateImg.texture = textureTomaFrame;
 
-                                if (finalCandidate == 2) alert('pobeda');
+                                if (finalCandidate == 2){
+
+                                }else{
+                                    textUpadete(config.vucicMessage, 500, 65);
+                                        var audio = new Audio('assets/sounds/toma/engleski.mp3');
+                                        audio.play();
+                                }
 
                                 // message.text= 'toma';
                                 // message.x= 800;
@@ -709,7 +724,13 @@ function myFunction(response) {
                                 // message.text= 'tadic';
                                 // message.x= 800;
 
-                                if (finalCandidate == 3) alert('pobeda');
+                                if (finalCandidate == 3){
+
+                                }else{
+                                    textUpadete(config.vucicMessage, 500, 65);
+                                        var audio = new Audio('assets/sounds/tadic/mac.mp3');
+                                        audio.play();
+                                }
 
 
                                 // $('.tadic').addClass('winner');
@@ -735,7 +756,13 @@ function myFunction(response) {
 
                                 // message.text= 'canak';
                                 // message.x= 800;
-                                if (finalCandidate == 4) alert('pobeda');
+                                if (finalCandidate == 4){
+
+                                }else{
+                                    textUpadete(config.vucicMessage, 500, 65);
+                                        var audio = new Audio('assets/sounds/ceda/gospodjo2.mp3');
+                                        audio.play();
+                                }
 
                                 // $('.canak').addClass('winner');
                                 // $("li").addClass('winner-background');
@@ -757,7 +784,13 @@ function myFunction(response) {
                                 textUpadete(config.canakMessage, 500, 65);
                                 winnerCandidateImg.texture = textureCanakFrame;
 
-                                if (finalCandidate == 5) alert('pobeda');
+                                if (finalCandidate == 5){
+
+                                }else{
+                                    textUpadete(config.vucicMessage, 500, 65);
+                                        var audio = new Audio('assets/sounds/canak/sat.mp3');
+                                        audio.play();
+                                }
                                 // message.text='ceda';
                                 // message.x= 800; 
                                 // $('.ceda').addClass('winner');
@@ -780,7 +813,13 @@ function myFunction(response) {
                                 textUpadete(config.seseljMessage, 500, 65);
                                 winnerCandidateImg.texture = textureSeseljFrame;
 
-                                if (finalCandidate == 6) alert('pobeda');
+                                if (finalCandidate == 6){
+
+                                }else{
+                                    textUpadete(config.vucicMessage, 500, 65);
+                                        var audio = new Audio('assets/sounds/seselj/olja.mp3');
+                                        audio.play();
+                                }
 
                                 // message.text= 'seselj';
 
