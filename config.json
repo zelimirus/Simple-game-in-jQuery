@@ -1,0 +1,20 @@
+{
+    "winMultiplication" : 3,
+    "equalMessage" : "Pokradene glasačke kutije, izbori se ponavlaju",
+    "winnerMessage" : "Pobeda",
+    "welcomeMessage" : "Dobrodošli",
+    "vucicMessage" : "Tisina tamo,živećeš bolje 2046",
+    "dacicMessage" : "Ko bi reko čuda da se dese da miljacka",
+    "tomaMessage" : "Doći će žuti ljudi da piju vodu sa Morave i odneće ti",
+    "tadicMessage" : "Tri sekunde u reketu ministre molim te",
+    "cedaMessage" : "Nemojte da plačete gospođo",
+    "canakMessage" : "Veliki brate oćeš da ti Jelena i ja optevamo neku pesmu",
+    "seseljMessage" : "Vi pripadnici Haškog tribunala možete samo da prihvatite",
+    "imgSlot": "images/slot3.png",
+    "imgBody": "images/frame.png",
+    "imgButton": "images/start.png",
+    "creditValue":5000
+}  
+
+
+
