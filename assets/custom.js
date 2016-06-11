@@ -1,6 +1,6 @@
 //constants
 var xmlhttp = new XMLHttpRequest();
-var url = "config.json";
+var url = "assets/config.json";
 
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
