@@ -5,7 +5,6 @@ var url = "assets/config.json";
 
 
 
-
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         myFunction(xmlhttp.responseText);
@@ -22,7 +21,7 @@ function myFunction(response) {
     var STATE_MOVING = 2;
     var STATE_CHECK_WIN = 3;
     var SLOT_NUMBER = 5;
-    var INITIAL_X =  395;
+    var INITIAL_X = 395;
     var TILE_HEIGHT = 100;
     var TILE_WIDTH = 100;
     var N_CYCLE = 5;
@@ -97,28 +96,31 @@ function myFunction(response) {
     selectVucic.interactive = true;
     selectVucic
 
-     .on('mouseover', onVucicDown)
-     .on('touchstart', onVucicDown)
-     .on('click', addVucic)
+        .on('mouseover', onVucicDown)
+        .on('touchstart', onVucicDown)
+        .on('click', addVucic)
 
-        // set the mouseup and touchend callback...
+    // set the mouseup and touchend callback...
     .on('mouseout', onVucicUp)
-    .on('touchend', onVucicUp)
+        .on('touchend', onVucicUp)
 
-    function onVucicDown(){
+    function onVucicDown() {
         this.isdown = true;
         this.texture = textureVucic;
-        
+
+
     }
 
-    function onVucicUp(){
+    function onVucicUp() {
         this.isdown = false;
         this.texture = textureVucicFrame;
     }
 
-    function addVucic(){
+    function addVucic() {
         yourCandidateImg.texture = textureVucicFrame;
         yourCandidate = 0;
+        stage.removeChild(line1);
+        stage.removeChild(line2);
     }
 
 
@@ -133,28 +135,30 @@ function myFunction(response) {
     selectDacic.interactive = true;
     selectDacic
 
-     .on('mouseover', onDacicDown)
-     .on('touchstart', onDacicDown)
-     .on('click', addDacic)
+        .on('mouseover', onDacicDown)
+        .on('touchstart', onDacicDown)
+        .on('click', addDacic)
 
-        // set the mouseup and touchend callback...
+    // set the mouseup and touchend callback...
     .on('mouseout', onDacicUp)
-    .on('touchend', onDacicUp)
+        .on('touchend', onDacicUp)
 
-    function onDacicDown(){
+    function onDacicDown() {
         this.isdown = true;
         this.texture = textureDacic;
-        
+
     }
 
-    function onDacicUp(){
+    function onDacicUp() {
         this.isdown = false;
         this.texture = textureDacicFrame;
     }
 
-     function addDacic(){
+    function addDacic() {
         yourCandidateImg.texture = textureDacicFrame;
         yourCandidate = 1;
+        stage.removeChild(line1);
+        stage.removeChild(line2);
     }
 
 
@@ -170,28 +174,30 @@ function myFunction(response) {
     selectToma.interactive = true;
     selectToma
 
-     .on('mouseover', onTomaDown)
-     .on('touchstart', onTomaDown)
-     .on('click', addToma)
+        .on('mouseover', onTomaDown)
+        .on('touchstart', onTomaDown)
+        .on('click', addToma)
 
-        // set the mouseup and touchend callback...
+    // set the mouseup and touchend callback...
     .on('mouseout', onTomaUp)
-    .on('touchend', onTomaUp)
+        .on('touchend', onTomaUp)
 
-    function onTomaDown(){
+    function onTomaDown() {
         this.isdown = true;
         this.texture = textureToma;
-        
+
     }
 
-    function onTomaUp(){
+    function onTomaUp() {
         this.isdown = false;
         this.texture = textureTomaFrame;
     }
 
-     function addToma(){
+    function addToma() {
         yourCandidateImg.texture = textureTomaFrame;
         yourCandidate = 2;
+        stage.removeChild(line1);
+        stage.removeChild(line2);
     }
 
 
@@ -207,28 +213,30 @@ function myFunction(response) {
     selectTadic.interactive = true;
     selectTadic
 
-     .on('mouseover', onTadicDown)
-     .on('touchstart', onTadicDown)
-     .on('click', addTadic)
+        .on('mouseover', onTadicDown)
+        .on('touchstart', onTadicDown)
+        .on('click', addTadic)
 
-        // set the mouseup and touchend callback...
+    // set the mouseup and touchend callback...
     .on('mouseout', onTadicUp)
-    .on('touchend', onTadicUp)
+        .on('touchend', onTadicUp)
 
-    function onTadicDown(){
+    function onTadicDown() {
         this.isdown = true;
         this.texture = textureTadic;
-        
+
     }
 
-    function onTadicUp(){
+    function onTadicUp() {
         this.isdown = false;
         this.texture = textureTadicFrame;
     }
 
-    function addTadic(){
+    function addTadic() {
         yourCandidateImg.texture = textureTadicFrame;
         yourCandidate = 3;
+        stage.removeChild(line1);
+        stage.removeChild(line2);
     }
 
 
@@ -243,28 +251,30 @@ function myFunction(response) {
     selectCeda.interactive = true;
     selectCeda
 
-     .on('mouseover', onCedaDown)
-     .on('touchstart', onCedaDown)
-     .on('click', addCeda)
+        .on('mouseover', onCedaDown)
+        .on('touchstart', onCedaDown)
+        .on('click', addCeda)
 
-        // set the mouseup and touchend callback...
+    // set the mouseup and touchend callback...
     .on('mouseout', onCedaUp)
-    .on('touchend', onCedaUp)
+        .on('touchend', onCedaUp)
 
-    function onCedaDown(){
+    function onCedaDown() {
         this.isdown = true;
         this.texture = textureCeda;
-        
+
     }
 
-    function onCedaUp(){
+    function onCedaUp() {
         this.isdown = false;
         this.texture = textureCedaFrame;
     }
 
-    function addCeda(){
+    function addCeda() {
         yourCandidateImg.texture = textureCedaFrame;
         yourCandidate = 4;
+        stage.removeChild(line1);
+        stage.removeChild(line2);
     }
 
 
@@ -279,28 +289,30 @@ function myFunction(response) {
     selectCanak.interactive = true;
     selectCanak
 
-     .on('mouseover', onCanakDown)
-     .on('touchstart', onCanakDown)
-     .on('click', addCanak)
+        .on('mouseover', onCanakDown)
+        .on('touchstart', onCanakDown)
+        .on('click', addCanak)
 
-        // set the mouseup and touchend callback...
+    // set the mouseup and touchend callback...
     .on('mouseout', onCanakUp)
-    .on('touchend', onCanakUp)
+        .on('touchend', onCanakUp)
 
-    function onCanakDown(){
+    function onCanakDown() {
         this.isdown = true;
         this.texture = textureCanak;
-        
+
     }
 
-    function onCanakUp(){
+    function onCanakUp() {
         this.isdown = false;
         this.texture = textureCanakFrame;
     }
 
-     function addCanak(){
+    function addCanak() {
         yourCandidateImg.texture = textureCanakFrame;
         yourCandidate = 5;
+        stage.removeChild(line1);
+        stage.removeChild(line2);
     }
 
     var selectSeselj = new PIXI.Sprite(textureSeseljFrame);
@@ -314,35 +326,37 @@ function myFunction(response) {
     selectSeselj.interactive = true;
     selectSeselj
 
-     .on('mouseover', onSeseljDown)
-     .on('touchstart', onSeseljDown)
-     .on('click', addSeselj)
+        .on('mouseover', onSeseljDown)
+        .on('touchstart', onSeseljDown)
+        .on('click', addSeselj)
 
-        // set the mouseup and touchend callback...
+    // set the mouseup and touchend callback...
     .on('mouseout', onSeseljUp)
-    .on('touchend', onSeseljUp)
+        .on('touchend', onSeseljUp)
 
-    function onSeseljDown(){
+    function onSeseljDown() {
         this.isdown = true;
         this.texture = textureSeselj;
-        
+
     }
 
-    function onSeseljUp(){
+    function onSeseljUp() {
         this.isdown = false;
         this.texture = textureSeseljFrame;
     }
 
-      function addSeselj(){
+    function addSeselj() {
         yourCandidateImg.texture = textureSeseljFrame;
         yourCandidate = 6;
+        stage.removeChild(line1);
+        stage.removeChild(line2);
     }
 
 
     yourCandidateImg = new PIXI.Sprite(textureVucicFrame);
 
     yourCandidateImg.height = 250;
-    yourCandidateImg.width  = yourCandidateImg.height;
+    yourCandidateImg.width = yourCandidateImg.height;
     yourCandidateImg.y = 150;
     yourCandidateImg.x = 50;
 
@@ -353,7 +367,7 @@ function myFunction(response) {
     winnerCandidateImg = new PIXI.Sprite(textureVucicFrame);
 
     winnerCandidateImg.height = 250;
-    winnerCandidateImg.width  = winnerCandidateImg.height;
+    winnerCandidateImg.width = winnerCandidateImg.height;
     winnerCandidateImg.y = 150;
     winnerCandidateImg.x = 1000;
 
@@ -362,40 +376,39 @@ function myFunction(response) {
 
 
 
+    var volumeStyle = {
+        font: '20px Arial',
+        fill: '#ff0000',
+        align: 'center'
 
-var volumeStyle = {
-    font: '20px Arial',
-    fill : '#ff0000',
-    align : 'center'
-
-}
+    }
 
 
-var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
+    var volumeOnOF = new PIXI.Text('Isključi zvuk', volumeStyle);
     volumeOnOF.x = 1170;
     volumeOnOF.y = 10;
     volumeOnOF.interactive = true;
     stage.addChild(volumeOnOF);
 
     volumeOnOF.click = function(e) {
-        if(volume){
-        volumeOnOF.text = 'Uključi zvuk';
-        volume = 0;
-    }else{
-        volumeOnOF.text = 'Isključi zvuk';
-        volume = 1;
-    }
-       
+        if (volume) {
+            volumeOnOF.text = 'Uključi zvuk';
+            volume = 0;
+        } else {
+            volumeOnOF.text = 'Isključi zvuk';
+            volume = 1;
+        }
+
 
     }
     volumeOnOFtouchstart = function(e) {
-       if(volume){
-        volumeOnOF.text = 'Uključi zvuk';
-        volume = 0;
-    }else{
-        volumeOnOF.text = 'Isključi zvuk';
-        volume = 1;
-    }
+        if (volume) {
+            volumeOnOF.text = 'Uključi zvuk';
+            volume = 0;
+        } else {
+            volumeOnOF.text = 'Isključi zvuk';
+            volume = 1;
+        }
 
     }
 
@@ -404,8 +417,8 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
     var messageStyle = {
         font: 'bold 15px Arial',
-        fill : '#ff0000',
-        align : 'center'
+        fill: '#ff0000',
+        align: 'center'
     };
 
 
@@ -418,7 +431,7 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
         font: 'bold 18px Arial'
     }
     var credit = new PIXI.Text('CREDIT:', creditStyle);
-    credit.x = 595  ;
+    credit.x = 595;
     credit.y = 10;
     stage.addChild(credit);
 
@@ -459,36 +472,37 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
     imgButton.click = function(e) {
         startAnimation();
         finalCandidate = yourCandidate;
-       
-
     }
     imgButton.touchstart = function(e) {
         startAnimation();
         finalCandidate = yourCandidate;
     }
 
-        imgButton
-        // set the mousedown and touchstart callback...
+    imgButton
+    // set the mousedown and touchstart callback...
         .on('mousedown', onButtonDown)
         .on('touchstart', onButtonDown)
 
-        // set the mouseup and touchend callback...
-        .on('mouseup', onButtonUp)
+    // set the mouseup and touchend callback...
+    .on('mouseup', onButtonUp)
         .on('touchend', onButtonUp)
-  
-        function onButtonDown()
-            {
-                this.isdown = true;
-                this.texture = texture4;
-                this.alpha = 1;
-            }
 
-        function onButtonUp()
-            {
-                this.isdown = false;
+    function onButtonDown() {
+        this.isdown = true;
+        this.texture = texture4;
+        this.alpha = 1;
 
-                    this.texture = texture2;    
-            }
+        stage.removeChild(line1);
+        stage.removeChild(line2);
+        renderer.render(stage);
+
+    }
+
+    function onButtonUp() {
+        this.isdown = false;
+
+        this.texture = texture2;
+    }
 
 
 
@@ -498,7 +512,6 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
     imgBody.y = 70;
     imgBody.width = 608;
     imgBody.height = 378;
-
 
 
 
@@ -537,12 +550,6 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
 
 
-    // center the sprite's anchor point
-
-
-    // move the sprite to the center of the screen
-
-
     stage.addChild(imgBody);
     stage.addChild(imgButton);
 
@@ -550,37 +557,6 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
     var line2 = new PIXI.Graphics();
     stage.addChild(line1);
     stage.addChild(line2);
-
-
- //    function drawLine() {
- //    // if (p < 1.00)  // while we didn't fully draw the line
- //    //     p += 0.02; // increase the "progress" of the animation
- // stage.addChild(line1);
- //    stage.addChild(line2);
-       
- //        line1.lineStyle(19, 0xdc150d);
- //        line1.moveTo(70,170);
-       
- //        line1.lineTo(400,600);
-
-
-      
- //        line2.lineStyle(19, 0xdc150d);
- //        line2.moveTo(275,170);
-       
- //        line2.lineTo(400,600);
-
- //        renderer.render(stage);    
- //        requestAnimationFrame(drawLine);
- //    }
-
- //    function clear(){
-
- //     stage.removeChild(line1);
- //    }
-    
-
-                                
 
 
 
@@ -645,8 +621,15 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
     function startAnimation() {
 
+        selectVucic.interactive = false;
+        selectDacic.interactive = false;
+        selectToma.interactive = false;
+        selectTadic.interactive = false;
+        selectCeda.interactive = false;
+        selectCanak.interactive = false;
+        selectSeselj.interactive = false;
+        imgButton.interactive = false;
 
-  
 
 
         var can0 = can1 = can2 = can3 = can4 = can5 = can6 = 0;
@@ -711,27 +694,37 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
                     if (sortThisBaby(result2)) {
                         switch (indexOfMax(result)) {
                             case 0:
-                        
-                                 winnerCandidateImg.texture = textureVucicFrame;
+
+                                winnerCandidateImg.texture = textureVucicFrame;
                                 // message.text= 'vucic';
 
                                 // message.x= 800;
 
-                                if (finalCandidate == 0){
+                                if (finalCandidate == 0) {
 
-                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
-                               
+                                    textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
 
-                                }else{
+
+                                } else {
                                     textUpadete(config.vucicMessage, 535, 45);
-                                        var audio = new Audio('tisina.mp3');
-                                        audio.volume = volume;
-                                        audio.play();
-                                        // drawLine();
-                                  
+                                    var audio = new Audio('tisina.mp3');
+                                    audio.volume = volume;
+                                    audio.play();
 
-                                  
-                                 }
+                                    line1.lineStyle(20, 0xff0000);
+                                    line1.moveTo(50, 150);
+                                    line1.lineTo(300, 400);
+                                    stage.addChild(line1);
+                                    line2.lineStyle(20, 0xff0000);
+                                    line2.moveTo(300, 150);
+                                    line2.lineTo(50, 400);
+                                    stage.addChild(line2);
+                                    renderer.render(stage);
+
+
+
+
+                                }
                                 // if (candidate == "vucic") {
                                 //     creditCharger();
 
@@ -746,19 +739,27 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
                                 break;
                             case 1:
-                                
+
                                 winnerCandidateImg.texture = textureDacicFrame;
 
-                                if (finalCandidate == 1){
-                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
+                                if (finalCandidate == 1) {
+                                    textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
 
-                                }else{
+                                } else {
                                     textUpadete(config.dacicMessage, 483, 45);
-                                        var audio = new Audio('assets/sounds/dacic/miljacka2.mp3');
-                                        audio.volume = volume;
-                                        audio.play();
-                                       // drawLine();
-                                    
+                                    var audio = new Audio('assets/sounds/dacic/miljacka2.mp3');
+                                    audio.volume = volume;
+                                    audio.play();
+
+                                    line1.lineStyle(20, 0xff0000);
+                                    line1.moveTo(50, 150);
+                                    line1.lineTo(300, 400);
+                                    stage.addChild(line1);
+                                    line2.lineStyle(20, 0xff0000);
+                                    line2.moveTo(300, 150);
+                                    line2.lineTo(50, 400);
+                                    stage.addChild(line2);
+                                    renderer.render(stage);
                                 }
 
                                 // message.text= 'dacic';
@@ -783,18 +784,27 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
                                 break;
                             case 2:
-                                
+
                                 winnerCandidateImg.texture = textureTomaFrame;
 
-                                if (finalCandidate == 2){
-                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
-                                }else{
+                                if (finalCandidate == 2) {
+                                    textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                } else {
                                     textUpadete(config.tomaMessage, 445, 45);
-                                        var audio = new Audio('assets/sounds/toma/engleski.mp3');
-                                        audio.volume = volume;
-                                        audio.play();
-                                        // drawLine();
-                                 
+                                    var audio = new Audio('assets/sounds/toma/engleski.mp3');
+                                    audio.volume = volume;
+                                    audio.play();
+
+                                    line1.lineStyle(20, 0xff0000);
+                                    line1.moveTo(50, 150);
+                                    line1.lineTo(300, 400);
+                                    stage.addChild(line1);
+                                    line2.lineStyle(20, 0xff0000);
+                                    line2.moveTo(300, 150);
+                                    line2.lineTo(50, 400);
+                                    stage.addChild(line2);
+                                    renderer.render(stage);
+
                                 }
 
                                 // message.text= 'toma';
@@ -818,19 +828,30 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
                                 break;
                             case 3:
-                                    winnerCandidateImg.texture = textureTadicFrame;
+                                winnerCandidateImg.texture = textureTadicFrame;
                                 // message.text= 'tadic';
                                 // message.x= 800;
 
-                                if (finalCandidate == 3){
-                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
-                                }else{
+                                if (finalCandidate == 3) {
+                                    textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                } else {
                                     textUpadete(config.tadicMessage, 470, 45);
-                                        var audio = new Audio('assets/sounds/tadic/mac.mp3');
-                                        audio.volume = volume;
-                                        audio.play();
-                                        // drawLine();
-                              
+                                    var audio = new Audio('assets/sounds/tadic/mac.mp3');
+                                    audio.volume = volume;
+                                    audio.play();
+
+
+
+                                    line1.lineStyle(20, 0xff0000);
+                                    line1.moveTo(50, 150);
+                                    line1.lineTo(300, 400);
+                                    stage.addChild(line1);
+                                    line2.lineStyle(20, 0xff0000);
+                                    line2.moveTo(300, 150);
+                                    line2.lineTo(50, 400);
+                                    stage.addChild(line2);
+                                    renderer.render(stage);
+
                                 }
 
 
@@ -852,20 +873,28 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
                                 break;
                             case 4:
 
-                                
+
                                 winnerCandidateImg.texture = textureCedaFrame;
 
                                 // message.text= 'canak';
                                 // message.x= 800;
-                                if (finalCandidate == 4){
-                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
-                                }else{
+                                if (finalCandidate == 4) {
+                                    textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                } else {
                                     textUpadete(config.cedaMessage, 550, 45);
-                                        var audio = new Audio('assets/sounds/ceda/gospodjo2.mp3');
-                                        audio.volume = volume;
-                                        audio.play();
-                                        // drawLine();
-                                   
+                                    var audio = new Audio('assets/sounds/ceda/gospodjo2.mp3');
+                                    audio.volume = volume;
+                                    audio.play();
+
+                                    line1.lineStyle(20, 0xff0000);
+                                    line1.moveTo(50, 150);
+                                    line1.lineTo(300, 400);
+                                    stage.addChild(line1);
+                                    line2.lineStyle(20, 0xff0000);
+                                    line2.moveTo(300, 150);
+                                    line2.lineTo(50, 400);
+                                    stage.addChild(line2);
+                                    renderer.render(stage);
                                 }
 
                                 // $('.canak').addClass('winner');
@@ -885,18 +914,26 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
                                 break;
                             case 5:
-                                
+
                                 winnerCandidateImg.texture = textureCanakFrame;
 
-                                if (finalCandidate == 5){
-                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
-                                }else{
+                                if (finalCandidate == 5) {
+                                    textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                } else {
                                     textUpadete(config.canakMessage, 475, 45);
-                                        var audio = new Audio('assets/sounds/canak/sat.mp3');
-                                        audio.volume = volume;
-                                        audio.play();
-                                        // drawLine();
-                            
+                                    var audio = new Audio('assets/sounds/canak/sat.mp3');
+                                    audio.volume = volume;
+                                    audio.play();
+
+                                    line1.lineStyle(20, 0xff0000);
+                                    line1.moveTo(50, 150);
+                                    line1.lineTo(300, 400);
+                                    stage.addChild(line1);
+                                    line2.lineStyle(20, 0xff0000);
+                                    line2.moveTo(300, 150);
+                                    line2.lineTo(50, 400);
+                                    stage.addChild(line2);
+                                    renderer.render(stage);
                                 }
                                 // message.text='ceda';
                                 // message.x= 800; 
@@ -917,18 +954,26 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
                                 break;
                             case 6:
-                                
+
                                 winnerCandidateImg.texture = textureSeseljFrame;
 
-                                if (finalCandidate == 6){
-                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
-                                }else{
+                                if (finalCandidate == 6) {
+                                    textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                } else {
                                     textUpadete(config.seseljMessage, 405, 45);
-                                        var audio = new Audio('assets/sounds/seselj/olja.mp3');
-                                        audio.volume = volume;
-                                        audio.play();
-                                        // drawLine();
-                                
+                                    var audio = new Audio('assets/sounds/seselj/olja.mp3');
+                                    audio.volume = volume;
+                                    audio.play();
+
+                                    line1.lineStyle(20, 0xff0000);
+                                    line1.moveTo(50, 150);
+                                    line1.lineTo(300, 400);
+                                    stage.addChild(line1);
+                                    line2.lineStyle(20, 0xff0000);
+                                    line2.moveTo(300, 150);
+                                    line2.lineTo(50, 400);
+                                    stage.addChild(line2);
+                                    renderer.render(stage);
                                 }
 
                                 // message.text= 'seselj';
@@ -959,6 +1004,14 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
                     }
 
+                    selectVucic.interactive = true;
+                    selectDacic.interactive = true;
+                    selectToma.interactive = true;
+                    selectTadic.interactive = true;
+                    selectCeda.interactive = true;
+                    selectCanak.interactive = true;
+                    selectSeselj.interactive = true;
+                    imgButton.interactive = true;
 
                 }, 2800);
 
@@ -967,7 +1020,7 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
 
     draw();
 
-    function textUpadete(value, x, y, color =" #ff0000") {
+    function textUpadete(value, x, y, color = " #ff0000") {
         message.text = value;
         message.x = x;
         message.y = y;
@@ -1015,22 +1068,11 @@ var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
         return maxIndex;
     }
 
-
-
-    // start animating
     animate();
 
     function animate() {
         requestAnimationFrame(animate);
-
-        // just for fun, let's rotate mr rabbit a little
-
-
-        // render the container
         renderer.render(stage);
     }
-
-
-
 
 }
