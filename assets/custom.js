@@ -108,6 +108,8 @@ function myFunction(response) {
         yourCandidate = 0;
         stage.removeChild(line1);
         stage.removeChild(line2);
+        stage.removeChild(winnerCheck);
+        stage.removeChild(winnerCheck2);
     }
 
 
@@ -146,6 +148,8 @@ function myFunction(response) {
         yourCandidate = 1;
         stage.removeChild(line1);
         stage.removeChild(line2);
+        stage.removeChild(winnerCheck);
+        stage.removeChild(winnerCheck2);
     }
 
 
@@ -183,6 +187,8 @@ function myFunction(response) {
         yourCandidate = 2;
         stage.removeChild(line1);
         stage.removeChild(line2);
+        stage.removeChild(winnerCheck);
+        stage.removeChild(winnerCheck2);
     }
 
 
@@ -220,6 +226,8 @@ function myFunction(response) {
         yourCandidate = 3;
         stage.removeChild(line1);
         stage.removeChild(line2);
+        stage.removeChild(winnerCheck);
+        stage.removeChild(winnerCheck2);
     }
 
 
@@ -256,6 +264,8 @@ function myFunction(response) {
         yourCandidate = 4;
         stage.removeChild(line1);
         stage.removeChild(line2);
+        stage.removeChild(winnerCheck);
+        stage.removeChild(winnerCheck2);
     }
 
 
@@ -292,6 +302,8 @@ function myFunction(response) {
         yourCandidate = 5;
         stage.removeChild(line1);
         stage.removeChild(line2);
+        stage.removeChild(winnerCheck);
+        stage.removeChild(winnerCheck2);
     }
 
     var selectSeselj = new PIXI.Sprite(textureSeseljFrame);
@@ -327,6 +339,8 @@ function myFunction(response) {
         yourCandidate = 6;
         stage.removeChild(line1);
         stage.removeChild(line2);
+        stage.removeChild(winnerCheck);
+        stage.removeChild(winnerCheck2);
     }
 
     yourCandidateImg = new PIXI.Sprite(textureVucicFrame);
@@ -447,6 +461,8 @@ function myFunction(response) {
 
         stage.removeChild(line1);
         stage.removeChild(line2);
+        stage.removeChild(winnerCheck);
+        stage.removeChild(winnerCheck2);
         renderer.render(stage);
     }
 
@@ -497,6 +513,13 @@ function myFunction(response) {
     var line2 = new PIXI.Graphics();
     stage.addChild(line1);
     stage.addChild(line2);
+    var winnerCheck = new PIXI.Graphics();    
+    stage.addChild(winnerCheck);
+    var winnerCheck2 = new PIXI.Graphics();    
+  
+
+
+    stage.addChild(winnerCheck2);
 
     var INC = [25, 35, 50, 70, 100];
 
@@ -611,43 +634,26 @@ function myFunction(response) {
                                 if (finalCandidate == 0) {
 
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                    playSound('assets/sounds/win.mp3');
+                                    drowWinerLine();
                                 } else {
                                     textUpadete(config.vucicMessage, 535, 45);
-                                    var audio = new Audio('tisina.mp3');
-                                    audio.volume = volume;
-                                    audio.play();
-
-                                    line1.lineStyle(20, 0xff0000);
-                                    line1.moveTo(50, 150);
-                                    line1.lineTo(300, 400);
-                                    stage.addChild(line1);
-                                    line2.lineStyle(20, 0xff0000);
-                                    line2.moveTo(300, 150);
-                                    line2.lineTo(50, 400);
-                                    stage.addChild(line2);
-                                    renderer.render(stage);
+                                    playSound('assets/sounds/vucic/tisina.mp3');
+                                    drowLine();
                                 }
                                 break;
                             case 1:
                                 winnerCandidateImg.texture = textureDacicFrame;
 
+
                                 if (finalCandidate == 1) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                    playSound('assets/sounds/win.mp3');
+                                    drowWinerLine();
                                 } else {
                                     textUpadete(config.dacicMessage, 483, 45);
-                                    var audio = new Audio('assets/sounds/dacic/miljacka2.mp3');
-                                    audio.volume = volume;
-                                    audio.play();
-
-                                    line1.lineStyle(20, 0xff0000);
-                                    line1.moveTo(50, 150);
-                                    line1.lineTo(300, 400);
-                                    stage.addChild(line1);
-                                    line2.lineStyle(20, 0xff0000);
-                                    line2.moveTo(300, 150);
-                                    line2.lineTo(50, 400);
-                                    stage.addChild(line2);
-                                    renderer.render(stage);
+                                    playSound('assets/sounds/dacic/miljacka2.mp3');
+                                    drowLine();
                                 }
                                 break;
                             case 2:
@@ -655,21 +661,12 @@ function myFunction(response) {
 
                                 if (finalCandidate == 2) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                    playSound('assets/sounds/win.mp3');
+                                    drowWinerLine();
                                 } else {
                                     textUpadete(config.tomaMessage, 445, 45);
-                                    var audio = new Audio('assets/sounds/toma/engleski.mp3');
-                                    audio.volume = volume;
-                                    audio.play();
-
-                                    line1.lineStyle(20, 0xff0000);
-                                    line1.moveTo(50, 150);
-                                    line1.lineTo(300, 400);
-                                    stage.addChild(line1);
-                                    line2.lineStyle(20, 0xff0000);
-                                    line2.moveTo(300, 150);
-                                    line2.lineTo(50, 400);
-                                    stage.addChild(line2);
-                                    renderer.render(stage);
+                                    playSound('assets/sounds/toma/engleski.mp3');
+                                    drowLine();
                                 }
                                 break;
                             case 3:
@@ -677,21 +674,12 @@ function myFunction(response) {
                      
                                 if (finalCandidate == 3) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                    playSound('assets/sounds/win.mp3');
+                                    drowWinerLine();
                                 } else {
                                     textUpadete(config.tadicMessage, 470, 45);
-                                    var audio = new Audio('assets/sounds/tadic/mac.mp3');
-                                    audio.volume = volume;
-                                    audio.play();
-
-                                    line1.lineStyle(20, 0xff0000);
-                                    line1.moveTo(50, 150);
-                                    line1.lineTo(300, 400);
-                                    stage.addChild(line1);
-                                    line2.lineStyle(20, 0xff0000);
-                                    line2.moveTo(300, 150);
-                                    line2.lineTo(50, 400);
-                                    stage.addChild(line2);
-                                    renderer.render(stage);
+                                    playSound('assets/sounds/tadic/mac.mp3');
+                                    drowLine();
                                 }
                                 break;
                             case 4:
@@ -699,21 +687,12 @@ function myFunction(response) {
 
                                 if (finalCandidate == 4) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                    playSound('assets/sounds/win.mp3');
+                                    drowWinerLine();
                                 } else {
                                     textUpadete(config.cedaMessage, 550, 45);
-                                    var audio = new Audio('assets/sounds/ceda/gospodjo2.mp3');
-                                    audio.volume = volume;
-                                    audio.play();
-
-                                    line1.lineStyle(20, 0xff0000);
-                                    line1.moveTo(50, 150);
-                                    line1.lineTo(300, 400);
-                                    stage.addChild(line1);
-                                    line2.lineStyle(20, 0xff0000);
-                                    line2.moveTo(300, 150);
-                                    line2.lineTo(50, 400);
-                                    stage.addChild(line2);
-                                    renderer.render(stage);
+                                    playSound('assets/sounds/ceda/gospodjo2.mp3');
+                                    drowLine();
                                 }
 
                                 break;
@@ -722,21 +701,12 @@ function myFunction(response) {
 
                                 if (finalCandidate == 5) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                    playSound('assets/sounds/win.mp3');
+                                    drowWinerLine();
                                 } else {
                                     textUpadete(config.canakMessage, 475, 45);
-                                    var audio = new Audio('assets/sounds/canak/sat.mp3');
-                                    audio.volume = volume;
-                                    audio.play();
-
-                                    line1.lineStyle(20, 0xff0000);
-                                    line1.moveTo(50, 150);
-                                    line1.lineTo(300, 400);
-                                    stage.addChild(line1);
-                                    line2.lineStyle(20, 0xff0000);
-                                    line2.moveTo(300, 150);
-                                    line2.lineTo(50, 400);
-                                    stage.addChild(line2);
-                                    renderer.render(stage);
+                                    playSound('assets/sounds/canak/sat.mp3');
+                                    drowLine();
                                 }
                                 break;
                             case 6:
@@ -744,21 +714,12 @@ function myFunction(response) {
 
                                 if (finalCandidate == 6) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
+                                    drowWinerLine();
+                                    playSound('assets/sounds/win.mp3');
                                 } else {
                                     textUpadete(config.seseljMessage, 405, 45);
-                                    var audio = new Audio('assets/sounds/seselj/olja.mp3');
-                                    audio.volume = volume;
-                                    audio.play();
-
-                                    line1.lineStyle(20, 0xff0000);
-                                    line1.moveTo(50, 150);
-                                    line1.lineTo(300, 400);
-                                    stage.addChild(line1);
-                                    line2.lineStyle(20, 0xff0000);
-                                    line2.moveTo(300, 150);
-                                    line2.lineTo(50, 400);
-                                    stage.addChild(line2);
-                                    renderer.render(stage);
+                                    playSound('assets/sounds/seselj/olja.mp3');
+                                    drowLine();
                                 }
                                 break;
                         }
@@ -782,6 +743,42 @@ function myFunction(response) {
     }
 
     draw();
+
+
+    function drowLine(){
+           line1.lineStyle(20, 0xff0000);
+            line1.moveTo(50, 150);
+            line1.lineTo(300, 400);
+            stage.addChild(line1);
+            line2.lineStyle(20, 0xff0000);
+            line2.moveTo(300, 150);
+            line2.lineTo(50, 400);
+            stage.addChild(line2);
+            renderer.render(stage);
+
+    }
+
+    function drowWinerLine(){
+            winnerCheck.lineStyle(17, 0xA4CC00, 1);
+            winnerCheck.moveTo(250, 180);
+            winnerCheck.lineTo(170, 350);
+            winnerCheck.lineTo(110, 290);
+            stage.addChild(winnerCheck);
+            winnerCheck2.lineStyle(17, 0xA4CC00, 1);
+            winnerCheck2.moveTo(1200, 180);
+            winnerCheck2.lineTo(1120, 350);
+            winnerCheck2.lineTo(1070, 290);
+            stage.addChild(winnerCheck2);
+            renderer.render(stage);
+
+    }
+    function playSound(x){
+
+        var audio = new Audio(x);
+        audio.volume = volume;
+        audio.play();
+
+    }
 
     function textUpadete(value, x, y, color = " #ff0000") {
         message.text = value;
