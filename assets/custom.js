@@ -27,10 +27,11 @@ function myFunction(response) {
     var TILE_WIDTH = 100;
     var N_CYCLE = 5;
     var TOT_TILES = 7;
-    var selectCandidateInitalY = 550;
+    var selectCandidateInitalY = 530;
     var selectCandidateInitalX = 387;
     var selectCandidateHight = 70;
     var selectCandidateWidth = 70;
+    var volume = 1;
 
     /*
      * 0: fermo
@@ -84,7 +85,7 @@ function myFunction(response) {
     var textureCanakFrame = PIXI.Texture.fromImage(config.selectCanakFrame);
     var textureSeseljFrame = PIXI.Texture.fromImage(config.selectSeseljFrame);
 
-   
+
     var selectVucic = new PIXI.Sprite(textureVucicFrame);
 
     selectVucic.height = selectCandidateHight;
@@ -362,12 +363,41 @@ function myFunction(response) {
 
 
 
+var volumeStyle = {
+    font: '20px Arial',
+    fill : '#ff0000',
+    align : 'center'
+
+}
 
 
+var volumeOnOF = new PIXI.Text('Isključi zvuk',volumeStyle);
+    volumeOnOF.x = 1170;
+    volumeOnOF.y = 10;
+    volumeOnOF.interactive = true;
+    stage.addChild(volumeOnOF);
 
+    volumeOnOF.click = function(e) {
+        if(volume){
+        volumeOnOF.text = 'Uključi zvuk';
+        volume = 0;
+    }else{
+        volumeOnOF.text = 'Isključi zvuk';
+        volume = 1;
+    }
+       
 
+    }
+    volumeOnOFtouchstart = function(e) {
+       if(volume){
+        volumeOnOF.text = 'Uključi zvuk';
+        volume = 0;
+    }else{
+        volumeOnOF.text = 'Isključi zvuk';
+        volume = 1;
+    }
 
-
+    }
 
 
 
@@ -381,7 +411,7 @@ function myFunction(response) {
 
     var message = new PIXI.Text(config.welcomeMessage, messageStyle);
     message.x = 610;
-    message.y = 50;
+    message.y = 45;
     stage.addChild(message);
 
     var creditStyle = {
@@ -399,23 +429,42 @@ function myFunction(response) {
     stage.addChild(creditValue);
 
 
+    var candidatePresent = new PIXI.Text("Tvoj kandidat", creditStyle);
+    candidatePresent.x = 120;
+    candidatePresent.y = 120;
+    stage.addChild(candidatePresent);
+
+
+    var winnerPresent = new PIXI.Text("Pobednik", creditStyle);
+    winnerPresent.x = 1090;
+    winnerPresent.y = 120;
+    stage.addChild(winnerPresent);
+
+
+    var select = new PIXI.Text("Izaberi svog kandidata", creditStyle);
+    select.x = 555;
+    select.y = 500;
+    stage.addChild(select);
+
+
 
     // create a new Sprite using the texture
     var imgButton = new PIXI.Sprite(texture2);
 
     imgButton.x = 600;
-    imgButton.y = 480;
+    imgButton.y = 450;
     imgButton.height = 40;
     imgButton.width = 100;
     imgButton.interactive = true;
     imgButton.click = function(e) {
         startAnimation();
         finalCandidate = yourCandidate;
+       
 
     }
     imgButton.touchstart = function(e) {
         startAnimation();
-         finalCandidate = yourCandidate;
+        finalCandidate = yourCandidate;
     }
 
         imgButton
@@ -446,7 +495,7 @@ function myFunction(response) {
     var imgBody = new PIXI.Sprite(texture1);
 
     imgBody.x = 353;
-    imgBody.y = 93;
+    imgBody.y = 70;
     imgBody.width = 608;
     imgBody.height = 378;
 
@@ -460,7 +509,7 @@ function myFunction(response) {
         slotSprite1[i].tilePosition.x = 0;
         slotSprite1[i].tilePosition.y = (-preChoosedPosition1[i] * TILE_HEIGHT);
         slotSprite1[i].x = INITIAL_X + (i * 105);
-        slotSprite1[i].y = 130;
+        slotSprite1[i].y = 105;
         stage.addChild(slotSprite1[i]);
     }
 
@@ -470,7 +519,7 @@ function myFunction(response) {
         slotSprite2[i].tilePosition.x = 0;
         slotSprite2[i].tilePosition.y = (-preChoosedPosition2[i] * TILE_HEIGHT);
         slotSprite2[i].x = INITIAL_X + (i * 105);
-        slotSprite2[i].y = 235;
+        slotSprite2[i].y = 210;
         stage.addChild(slotSprite2[i]);
     }
 
@@ -481,7 +530,7 @@ function myFunction(response) {
         slotSprite3[i].tilePosition.x = 0;
         slotSprite3[i].tilePosition.y = (-preChoosedPosition3[i] * TILE_HEIGHT);
         slotSprite3[i].x = INITIAL_X + (i * 105);
-        slotSprite3[i].y = 340;
+        slotSprite3[i].y = 315;
         stage.addChild(slotSprite3[i]);
     }
 
@@ -496,6 +545,42 @@ function myFunction(response) {
 
     stage.addChild(imgBody);
     stage.addChild(imgButton);
+
+    var line1 = new PIXI.Graphics();
+    var line2 = new PIXI.Graphics();
+    stage.addChild(line1);
+    stage.addChild(line2);
+
+
+ //    function drawLine() {
+ //    // if (p < 1.00)  // while we didn't fully draw the line
+ //    //     p += 0.02; // increase the "progress" of the animation
+ // stage.addChild(line1);
+ //    stage.addChild(line2);
+       
+ //        line1.lineStyle(19, 0xdc150d);
+ //        line1.moveTo(70,170);
+       
+ //        line1.lineTo(400,600);
+
+
+      
+ //        line2.lineStyle(19, 0xdc150d);
+ //        line2.moveTo(275,170);
+       
+ //        line2.lineTo(400,600);
+
+ //        renderer.render(stage);    
+ //        requestAnimationFrame(drawLine);
+ //    }
+
+ //    function clear(){
+
+ //     stage.removeChild(line1);
+ //    }
+    
+
+                                
 
 
 
@@ -561,6 +646,8 @@ function myFunction(response) {
     function startAnimation() {
 
 
+  
+
 
         var can0 = can1 = can2 = can3 = can4 = can5 = can6 = 0;
         if (gameStatus == STATE_INIT || gameStatus == STATE_CHECK_WIN) {
@@ -625,21 +712,26 @@ function myFunction(response) {
                         switch (indexOfMax(result)) {
                             case 0:
                         
-                                winnerCandidateImg.texture = textureVucicFrame;
+                                 winnerCandidateImg.texture = textureVucicFrame;
                                 // message.text= 'vucic';
 
                                 // message.x= 800;
 
                                 if (finalCandidate == 0){
 
-                                    textUpadete(config.winnerMessage, 500, 65);
+                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
                                
 
                                 }else{
-                                    textUpadete(config.vucicMessage, 500, 65);
+                                    textUpadete(config.vucicMessage, 535, 45);
                                         var audio = new Audio('tisina.mp3');
+                                        audio.volume = volume;
                                         audio.play();
-                                }
+                                        // drawLine();
+                                  
+
+                                  
+                                 }
                                 // if (candidate == "vucic") {
                                 //     creditCharger();
 
@@ -654,15 +746,19 @@ function myFunction(response) {
 
                                 break;
                             case 1:
-                                textUpadete(config.dacicMessage, 500, 65);
+                                
                                 winnerCandidateImg.texture = textureDacicFrame;
 
                                 if (finalCandidate == 1){
+                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
 
                                 }else{
-                                    textUpadete(config.vucicMessage, 500, 65);
+                                    textUpadete(config.dacicMessage, 483, 45);
                                         var audio = new Audio('assets/sounds/dacic/miljacka2.mp3');
+                                        audio.volume = volume;
                                         audio.play();
+                                       // drawLine();
+                                    
                                 }
 
                                 // message.text= 'dacic';
@@ -687,15 +783,18 @@ function myFunction(response) {
 
                                 break;
                             case 2:
-                                textUpadete(config.tomaMessage, 500, 65);
+                                
                                 winnerCandidateImg.texture = textureTomaFrame;
 
                                 if (finalCandidate == 2){
-
+                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
                                 }else{
-                                    textUpadete(config.vucicMessage, 500, 65);
+                                    textUpadete(config.tomaMessage, 445, 45);
                                         var audio = new Audio('assets/sounds/toma/engleski.mp3');
+                                        audio.volume = volume;
                                         audio.play();
+                                        // drawLine();
+                                 
                                 }
 
                                 // message.text= 'toma';
@@ -719,17 +818,19 @@ function myFunction(response) {
 
                                 break;
                             case 3:
-                                textUpadete(config.tadicMessage, 500, 65);
-                                winnerCandidateImg.texture = textureTadicFrame;
+                                    winnerCandidateImg.texture = textureTadicFrame;
                                 // message.text= 'tadic';
                                 // message.x= 800;
 
                                 if (finalCandidate == 3){
-
+                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
                                 }else{
-                                    textUpadete(config.vucicMessage, 500, 65);
+                                    textUpadete(config.tadicMessage, 470, 45);
                                         var audio = new Audio('assets/sounds/tadic/mac.mp3');
+                                        audio.volume = volume;
                                         audio.play();
+                                        // drawLine();
+                              
                                 }
 
 
@@ -751,17 +852,20 @@ function myFunction(response) {
                                 break;
                             case 4:
 
-                                textUpadete(config.cedaMessage, 500, 65);
+                                
                                 winnerCandidateImg.texture = textureCedaFrame;
 
                                 // message.text= 'canak';
                                 // message.x= 800;
                                 if (finalCandidate == 4){
-
+                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
                                 }else{
-                                    textUpadete(config.vucicMessage, 500, 65);
+                                    textUpadete(config.cedaMessage, 550, 45);
                                         var audio = new Audio('assets/sounds/ceda/gospodjo2.mp3');
+                                        audio.volume = volume;
                                         audio.play();
+                                        // drawLine();
+                                   
                                 }
 
                                 // $('.canak').addClass('winner');
@@ -781,15 +885,18 @@ function myFunction(response) {
 
                                 break;
                             case 5:
-                                textUpadete(config.canakMessage, 500, 65);
+                                
                                 winnerCandidateImg.texture = textureCanakFrame;
 
                                 if (finalCandidate == 5){
-
+                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
                                 }else{
-                                    textUpadete(config.vucicMessage, 500, 65);
+                                    textUpadete(config.canakMessage, 475, 45);
                                         var audio = new Audio('assets/sounds/canak/sat.mp3');
+                                        audio.volume = volume;
                                         audio.play();
+                                        // drawLine();
+                            
                                 }
                                 // message.text='ceda';
                                 // message.x= 800; 
@@ -810,15 +917,18 @@ function myFunction(response) {
 
                                 break;
                             case 6:
-                                textUpadete(config.seseljMessage, 500, 65);
+                                
                                 winnerCandidateImg.texture = textureSeseljFrame;
 
                                 if (finalCandidate == 6){
-
+                                    textUpadete(config.winnerMessage, 625, 45,config.winnerColor);
                                 }else{
-                                    textUpadete(config.vucicMessage, 500, 65);
+                                    textUpadete(config.seseljMessage, 405, 45);
                                         var audio = new Audio('assets/sounds/seselj/olja.mp3');
+                                        audio.volume = volume;
                                         audio.play();
+                                        // drawLine();
+                                
                                 }
 
                                 // message.text= 'seselj';
@@ -845,7 +955,7 @@ function myFunction(response) {
 
 
                         startAnimation()
-                        textUpadete(config.equalMessage, 500, 65);
+                        textUpadete(config.equalMessage, 500, 45);
 
                     }
 
@@ -857,10 +967,11 @@ function myFunction(response) {
 
     draw();
 
-    function textUpadete(value, x, y) {
+    function textUpadete(value, x, y, color =" #ff0000") {
         message.text = value;
         message.x = x;
         message.y = y;
+        message.style.fill = color;
     }
 
     function creditUpadete(value) {

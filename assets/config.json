@@ -3,13 +3,13 @@
     "equalMessage" : "Pokradene glasačke kutije, izbori se ponavlaju",
     "winnerMessage" : "Pobeda",
     "welcomeMessage" : "Dobrodošli",
-    "vucicMessage" : "Tisina tamo,živećeš bolje 2046",
-    "dacicMessage" : "Ko bi reko čuda da se dese da miljacka",
-    "tomaMessage" : "Doći će žuti ljudi da piju vodu sa Morave i odneće ti",
-    "tadicMessage" : "Tri sekunde u reketu ministre molim te",
+    "vucicMessage" : "Tisina tamo, živećeš bolje 2046!",
+    "dacicMessage" : "Ko bi reko čuda da se dese da miljacka evre ti ondese",
+    "tomaMessage" : "Doći će žuti ljudi da piju vodu sa Morave i odneće ti uložene pare",
+    "tadicMessage" : "Tri sekunde u reketu ministre molim te, odoše pare",
     "cedaMessage" : "Nemojte da plačete gospođo",
     "canakMessage" : "Veliki brate oćeš da ti Jelena i ja optevamo neku pesmu",
-    "seseljMessage" : "Vi pripadnici Haškog tribunala možete samo da prihvatite",
+    "seseljMessage" : "Vi pripadnici Haškog tribunala možete samo da prihvatite da ste izgibili pare",
     "imgSlot": "assets/images/slot3.png",
     "imgBody": "assets/images/frame.png",
     "imgButton": "assets/images/start.png",
@@ -27,7 +27,8 @@
     "selectTadicFrame":"assets/images/tadic-ram.png",
     "selectCedaFrame":"assets/images/ceda-ram.png",
     "selectCanakFrame":"assets/images/canak-ram.png",
-    "selectSeseljFrame":"assets/images/seselj-ram.png",
+    "selectSeseljFrame":"assets/images/seselj-ram.png", 
+    "winnerColor":"#A4CC00", 
     "creditValue":5000
 }  
 
