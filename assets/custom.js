@@ -12,24 +12,22 @@ xmlhttp.send();
 
 function myFunction(response) {
     var config = JSON.parse(response);
-
-    var STATE_ZERO = 0;
-    var STATE_INIT = 1;
-    var STATE_MOVING = 2;
-    var STATE_CHECK_WIN = 3;
-    var SLOT_NUMBER = 5;
-    var INITIAL_X = 395;
-    var TILE_HEIGHT = 100;
-    var TILE_WIDTH = 100;
-    var N_CYCLE = 5;
-    var TOT_TILES = 7;
+    var gameStateZERO = 0;
+    var gameStateINIT = 1;
+    var gameStateMOVING = 2;
+    var gameStateCHECK_WIN = 3;
+    var slotNumber = 5;
+    var initalX = 395;
+    var tileHEIGHT = 100;
+    var tileWIDTH = 100;
+    var nCycly = 5;
+    var tTiles = 7;
     var selectCandidateInitalY = 530;
     var selectCandidateInitalX = 387;
     var selectCandidateHight = 70;
     var selectCandidateWidth = 70;
     var volume = 1;
-
-
+    var creditValue = config.creditValue;
     var result = [];
     var gameStatus = 0;
     var finalTileY1 = [];
@@ -43,6 +41,7 @@ function myFunction(response) {
     var preChoosedPosition3 = [];
     var yourCandidate = 0;
     var finalCandidate = '';
+    var invested = 0;
 
     var renderer = PIXI.autoDetectRenderer(1300, 800, {
         backgroundColor: 0xFFFFFF
@@ -412,10 +411,10 @@ function myFunction(response) {
     credit.y = 10;
     stage.addChild(credit);
 
-    var creditValue = new PIXI.Text(config.creditValue, creditStyle);
-    creditValue.x = 670;
-    creditValue.y = 10;
-    stage.addChild(creditValue);
+    var creditValueShow = new PIXI.Text(creditValue, creditStyle);
+    creditValueShow.x = 670;
+    creditValueShow.y = 10;
+    stage.addChild(creditValueShow);
 
     var candidatePresent = new PIXI.Text("Tvoj kandidat", creditStyle);
     candidatePresent.x = 120;
@@ -427,14 +426,14 @@ function myFunction(response) {
     winnerPresent.y = 120;
     stage.addChild(winnerPresent);
 
-    var select = new PIXI.Text("Izaberi svog kandidata", creditStyle);
-    select.x = 555;
+    var select = new PIXI.Text("Izaberi svog kandidata i uloži kintu", creditStyle);
+    select.x = 500;
     select.y = 500;
     stage.addChild(select);
 
     var imgButton = new PIXI.Sprite(texture2);
 
-    imgButton.x = 600;
+    imgButton.x = 607;
     imgButton.y = 450;
     imgButton.height = 40;
     imgButton.width = 100;
@@ -442,10 +441,12 @@ function myFunction(response) {
     imgButton.click = function(e) {
         startAnimation();
         finalCandidate = yourCandidate;
+        
     }
     imgButton.touchstart = function(e) {
         startAnimation();
         finalCandidate = yourCandidate;
+        
     }
 
     imgButton
@@ -463,6 +464,13 @@ function myFunction(response) {
         stage.removeChild(line2);
         stage.removeChild(winnerCheck);
         stage.removeChild(winnerCheck2);
+        stage.removeChild(tv);
+        stage.removeChild(tvAntena1);
+        stage.removeChild(tvAntena2); 
+        stage.removeChild(tvAntenaEnd1); 
+        stage.removeChild(tvAntenaEnd2);
+        stage.removeChild(congr);
+        stage.addChild(imgBody); 
         renderer.render(stage);
     }
 
@@ -471,7 +479,7 @@ function myFunction(response) {
 
         this.texture = texture2;
     }
-
+ 
     var imgBody = new PIXI.Sprite(texture1);
     imgBody.x = 353;
     imgBody.y = 70;
@@ -480,29 +488,29 @@ function myFunction(response) {
 
     var texture3 = PIXI.Texture.fromImage(imgSlot);
     preChoosedPosition1 = [0, 2, 4, 6, 1];
-    for (var i = 0; i < SLOT_NUMBER; i++) {
-        slotSprite1[i] = new PIXI.extras.TilingSprite(texture3, TILE_WIDTH, TILE_HEIGHT);
+    for (var i = 0; i < slotNumber; i++) {
+        slotSprite1[i] = new PIXI.extras.TilingSprite(texture3, tileWIDTH, tileHEIGHT);
         slotSprite1[i].tilePosition.x = 0;
-        slotSprite1[i].tilePosition.y = (-preChoosedPosition1[i] * TILE_HEIGHT);
-        slotSprite1[i].x = INITIAL_X + (i * 105);
+        slotSprite1[i].tilePosition.y = (-preChoosedPosition1[i] * tileHEIGHT);
+        slotSprite1[i].x = initalX + (i * 105);
         slotSprite1[i].y = 105;
         stage.addChild(slotSprite1[i]);
     }
     preChoosedPosition2 = [2, 0, 6, 3, 4];
-    for (var i = 0; i < SLOT_NUMBER; i++) {
-        slotSprite2[i] = new PIXI.extras.TilingSprite(texture3, TILE_WIDTH, TILE_HEIGHT);
+    for (var i = 0; i < slotNumber; i++) {
+        slotSprite2[i] = new PIXI.extras.TilingSprite(texture3, tileWIDTH, tileHEIGHT);
         slotSprite2[i].tilePosition.x = 0;
-        slotSprite2[i].tilePosition.y = (-preChoosedPosition2[i] * TILE_HEIGHT);
-        slotSprite2[i].x = INITIAL_X + (i * 105);
+        slotSprite2[i].tilePosition.y = (-preChoosedPosition2[i] * tileHEIGHT);
+        slotSprite2[i].x = initalX + (i * 105);
         slotSprite2[i].y = 210;
         stage.addChild(slotSprite2[i]);
     }
     preChoosedPosition3 = [6, 1, 2, 4, 0];
-    for (var i = 0; i < SLOT_NUMBER; i++) {
-        slotSprite3[i] = new PIXI.extras.TilingSprite(texture3, TILE_WIDTH, TILE_HEIGHT);
+    for (var i = 0; i < slotNumber; i++) {
+        slotSprite3[i] = new PIXI.extras.TilingSprite(texture3, tileWIDTH, tileHEIGHT);
         slotSprite3[i].tilePosition.x = 0;
-        slotSprite3[i].tilePosition.y = (-preChoosedPosition3[i] * TILE_HEIGHT);
-        slotSprite3[i].x = INITIAL_X + (i * 105);
+        slotSprite3[i].tilePosition.y = (-preChoosedPosition3[i] * tileHEIGHT);
+        slotSprite3[i].x = initalX + (i * 105);
         slotSprite3[i].y = 315;
         stage.addChild(slotSprite3[i]);
     }
@@ -511,11 +519,145 @@ function myFunction(response) {
 
     var line1 = new PIXI.Graphics();
     var line2 = new PIXI.Graphics();
+    var winnerCheck = new PIXI.Graphics();    
+    var winnerCheck2 = new PIXI.Graphics();
+    var arrowRight = new PIXI.Graphics();    
+    var arrowLeft = new PIXI.Graphics();
+
+
+    arrowLeft.beginFill(0xA4CC00);
+    // arrowLeft.lineStyle(3, 0xffd900, 1);
+
+    arrowLeft.moveTo(550,635); 
+    arrowLeft.lineTo(570,620); 
+    arrowLeft.lineTo(570,630);  
+    arrowLeft.lineTo(610,630);  
+    arrowLeft.lineTo(610,640);  
+    arrowLeft.lineTo(570,640);   
+    arrowLeft.lineTo(570,650); 
+
+    arrowLeft.endFill();
+
+
+
+    arrowRight.beginFill(0xA4CC00);
+    // arrowRight.lineStyle(3, 0xffd900, 1);
+
+    arrowRight.moveTo(773,635); 
+    arrowRight.lineTo(753,620);  
+    arrowRight.lineTo(753,630);  
+    arrowRight.lineTo(713,630);      
+    arrowRight.lineTo(713,640);  
+    arrowRight.lineTo(753,640);   
+    arrowRight.lineTo(753,650); 
+
+    arrowRight.endFill();
+
+    
+
+
+    var stakeValue = 100;
+    var stake = new PIXI.Text(stakeValue, creditStyle);
+
+    stake.y = 625;
+    stake.x = 650;
+
+  
+
+    stage.addChild(arrowLeft)
+    stage.addChild(arrowRight);
     stage.addChild(line1);
     stage.addChild(line2);
-    var winnerCheck = new PIXI.Graphics();    
     stage.addChild(winnerCheck);
-    var winnerCheck2 = new PIXI.Graphics();    
+    stage.addChild(stake);
+
+    arrowLeft.interactive = true;
+    arrowRight.interactive = true;
+    arrowRight.click = function(e) {
+        if(parseInt(stake.text)< creditValue){
+            stake.text = parseInt(stake.text) + 100;
+            renderer.render(stage);
+        }
+    }
+    arrowLeft.click= function(e) {
+        if(parseInt(stake.text) > 100){
+        stake.text = parseInt(stake.text) -100;
+        renderer.render(stage);
+        }
+    }
+
+    arrowLeft
+        .on('mousedown', arrowDown)
+        .on('mouseup', arrowUp)
+
+
+    arrowRight
+        .on('mousedown', arrowDown)
+        .on('mouseup', arrowUp)
+    
+      function arrowDown(){
+        this.isdown = true;
+         this.tint = 0x5D8700 ;
+
+      }
+
+      function arrowUp(){
+        this.isdown = false;
+        this.tint = 0xA4CC00 ;        
+      }
+
+
+      var tv = new PIXI.Graphics();
+
+    tv.beginFill(0xff66cc);
+    tv.lineStyle(17, 0x00000, 1); 
+    tv.moveTo(390,100);
+    tv.lineTo(390,420);  
+    tv.lineTo(923,420);  
+    tv.lineTo(923,100);
+    tv.lineTo(390,100);
+
+
+     var tvAntena1 = new PIXI.Graphics();
+
+
+    tvAntena1.lineStyle(10, 0x00000, 1); 
+    tvAntena1.moveTo(600,100);
+    tvAntena1.quadraticCurveTo(480, 20,430,20);
+    
+
+    var tvAntena2 = new PIXI.Graphics();
+
+    tvAntena2.lineStyle(10, 0x00000, 1); 
+    tvAntena2.moveTo(700,100);
+    tvAntena2.quadraticCurveTo(820, 20,850,20);
+       
+
+
+    var tvAntenaEnd1 = new PIXI.Graphics();
+
+    tvAntenaEnd1.lineStyle(0);
+    tvAntenaEnd1.beginFill(0x000000);
+    tvAntenaEnd1.drawCircle(850, 18,13);
+    tvAntenaEnd1.endFill();
+
+    
+
+    var tvAntenaEnd2 = new PIXI.Graphics();
+
+
+    tvAntenaEnd2.lineStyle(0);
+    tvAntenaEnd2.beginFill(0x000000);
+    tvAntenaEnd2.drawCircle(430, 18,13);
+    tvAntenaEnd2.endFill();
+
+
+    var congrStyle = { font: 'bold 40px Arial', align: 'center', fill:'#A4CC00' };
+
+    var congr = new PIXI.Text('Čestitamo na pobedi!\n Udruženi mediji Srbije', congrStyle );
+        congr.x = 435 ;
+        congr.y = 185;
+
   
 
 
@@ -524,13 +666,13 @@ function myFunction(response) {
     var INC = [25, 35, 50, 70, 100];
 
     function draw() {
-        if (gameStatus == STATE_ZERO) {
-            gameStatus = STATE_INIT;
+        if (gameStatus == gameStateZERO) {
+            gameStatus = gameStateINIT;
         } else
-        if (gameStatus == STATE_INIT) {
-            gameStatus = STATE_CHECK_WIN;
-        } else if (gameStatus == STATE_MOVING) {
-            for (var i = 0; i < SLOT_NUMBER; i++) {
+        if (gameStatus == gameStateINIT) {
+            gameStatus = gameStateCHECK_WIN;
+        } else if (gameStatus == gameStateMOVING) {
+            for (var i = 0; i < slotNumber; i++) {
                 if (finalTileY1[i] > 0) {
                     slotSprite1[i].tilePosition.y = slotSprite1[i].tilePosition.y + INC[i];
                     finalTileY1[i] = finalTileY1[i] - INC[i];
@@ -545,15 +687,15 @@ function myFunction(response) {
                 }
             }
             if (finalTileY1[0] - 5 <= 0) {
-                gameStatus = STATE_CHECK_WIN;
+                gameStatus = gameStateCHECK_WIN;
             }
             if (finalTileY2[0] - 5 <= 0) {
-                gameStatus = STATE_CHECK_WIN;
+                gameStatus = gameStateCHECK_WIN;
             }
             if (finalTileY3[0] - 5 <= 0) {
-                gameStatus = STATE_CHECK_WIN;
+                gameStatus = gameStateCHECK_WIN;
             }
-        } else if (gameStatus == STATE_CHECK_WIN) {
+        } else if (gameStatus == gameStateCHECK_WIN) {
 
             return; //no more animation
         }
@@ -563,33 +705,27 @@ function myFunction(response) {
     } 
 
     function startAnimation() {
-        selectVucic.interactive = false;
-        selectDacic.interactive = false;
-        selectToma.interactive = false;
-        selectTadic.interactive = false;
-        selectCeda.interactive = false;
-        selectCanak.interactive = false;
-        selectSeselj.interactive = false;
-        imgButton.interactive = false;
+        interactive(false);
+        invested = parseInt(stake.text);
 
         var can0 = can1 = can2 = can3 = can4 = can5 = can6 = 0;
-        if (gameStatus == STATE_INIT || gameStatus == STATE_CHECK_WIN) {
+        if (gameStatus == gameStateINIT || gameStatus == gameStateCHECK_WIN) {
             preChoosedPosition1 = getRandomPositions();
             preChoosedPosition2 = getRandomPositions();
             preChoosedPosition3 = getRandomPositions();
-            for (var i = 0; i < SLOT_NUMBER; i++) {
+            for (var i = 0; i < slotNumber; i++) {
                 preChoosedPosition1[i] = getRandomInt(0, 6);
                 preChoosedPosition2[i] = getRandomInt(0, 6);
                 preChoosedPosition3[i] = getRandomInt(0, 6);
 
-                slotSprite1[i].tilePosition.y = (-preChoosedPosition1[i] * TILE_HEIGHT);
-                finalTileY1[i] = (N_CYCLE * TILE_HEIGHT * TOT_TILES);
-                slotSprite2[i].tilePosition.y = (-preChoosedPosition2[i] * TILE_HEIGHT);
-                finalTileY2[i] = (N_CYCLE * TILE_HEIGHT * TOT_TILES);
-                slotSprite3[i].tilePosition.y = (-preChoosedPosition3[i] * TILE_HEIGHT);
-                finalTileY3[i] = (N_CYCLE * TILE_HEIGHT * TOT_TILES);
+                slotSprite1[i].tilePosition.y = (-preChoosedPosition1[i] * tileHEIGHT);
+                finalTileY1[i] = (nCycly * tileHEIGHT * tTiles);
+                slotSprite2[i].tilePosition.y = (-preChoosedPosition2[i] * tileHEIGHT);
+                finalTileY2[i] = (nCycly * tileHEIGHT * tTiles);
+                slotSprite3[i].tilePosition.y = (-preChoosedPosition3[i] * tileHEIGHT);
+                finalTileY3[i] = (nCycly * tileHEIGHT * tTiles);
             }
-            gameStatus = STATE_MOVING;
+            gameStatus = gameStateMOVING;
             if (preChoosedPosition3[i] != preChoosedPosition3[i - 1]) {
                 var union = preChoosedPosition1.concat(preChoosedPosition2);
                 var store = union.concat(preChoosedPosition3);
@@ -635,11 +771,13 @@ function myFunction(response) {
 
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
                                     playSound('assets/sounds/win.mp3');
-                                    drowWinerLine();
+                                    canvasWinerLine();
+                                    calcWin();
                                 } else {
                                     textUpadete(config.vucicMessage, 535, 45);
                                     playSound('assets/sounds/vucic/tisina.mp3');
-                                    drowLine();
+                                    canvasLine();
+                                    calcDefeat();
                                 }
                                 break;
                             case 1:
@@ -649,11 +787,13 @@ function myFunction(response) {
                                 if (finalCandidate == 1) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
                                     playSound('assets/sounds/win.mp3');
-                                    drowWinerLine();
+                                    canvasWinerLine();
+                                    calcWin();
                                 } else {
                                     textUpadete(config.dacicMessage, 483, 45);
                                     playSound('assets/sounds/dacic/miljacka2.mp3');
-                                    drowLine();
+                                    canvasLine();
+                                    calcDefeat();
                                 }
                                 break;
                             case 2:
@@ -662,11 +802,13 @@ function myFunction(response) {
                                 if (finalCandidate == 2) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
                                     playSound('assets/sounds/win.mp3');
-                                    drowWinerLine();
+                                    canvasWinerLine();
+                                    calcWin();
                                 } else {
                                     textUpadete(config.tomaMessage, 445, 45);
                                     playSound('assets/sounds/toma/engleski.mp3');
-                                    drowLine();
+                                    canvasLine();
+                                    calcDefeat();
                                 }
                                 break;
                             case 3:
@@ -675,11 +817,13 @@ function myFunction(response) {
                                 if (finalCandidate == 3) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
                                     playSound('assets/sounds/win.mp3');
-                                    drowWinerLine();
+                                    canvasWinerLine();
+                                    calcWin();
                                 } else {
                                     textUpadete(config.tadicMessage, 470, 45);
                                     playSound('assets/sounds/tadic/mac.mp3');
-                                    drowLine();
+                                    canvasLine();
+                                    calcDefeat();
                                 }
                                 break;
                             case 4:
@@ -688,11 +832,13 @@ function myFunction(response) {
                                 if (finalCandidate == 4) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
                                     playSound('assets/sounds/win.mp3');
-                                    drowWinerLine();
+                                    canvasWinerLine();
+                                    calcWin();
                                 } else {
                                     textUpadete(config.cedaMessage, 550, 45);
                                     playSound('assets/sounds/ceda/gospodjo2.mp3');
-                                    drowLine();
+                                    canvasLine();
+                                    calcDefeat();
                                 }
 
                                 break;
@@ -702,11 +848,13 @@ function myFunction(response) {
                                 if (finalCandidate == 5) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
                                     playSound('assets/sounds/win.mp3');
-                                    drowWinerLine();
+                                    canvasWinerLine();
+                                    calcWin();
                                 } else {
                                     textUpadete(config.canakMessage, 475, 45);
                                     playSound('assets/sounds/canak/sat.mp3');
-                                    drowLine();
+                                    canvasLine();
+                                    calcDefeat();
                                 }
                                 break;
                             case 6:
@@ -714,38 +862,79 @@ function myFunction(response) {
 
                                 if (finalCandidate == 6) {
                                     textUpadete(config.winnerMessage, 625, 45, config.winnerColor);
-                                    drowWinerLine();
+                                    canvasWinerLine();
                                     playSound('assets/sounds/win.mp3');
+                                    canvasWinerLine();
+                                    calcWin();
                                 } else {
                                     textUpadete(config.seseljMessage, 405, 45);
                                     playSound('assets/sounds/seselj/olja.mp3');
-                                    drowLine();
+                                    canvasLine();
+                                    calcDefeat();
                                 }
                                 break;
                         }
                     } else {
                         startAnimation()
                         textUpadete(config.equalMessage, 500, 45);
+                        interactive(false);
                     }
 
-                    selectVucic.interactive = true;
-                    selectDacic.interactive = true;
-                    selectToma.interactive = true;
-                    selectTadic.interactive = true;
-                    selectCeda.interactive = true;
-                    selectCanak.interactive = true;
-                    selectSeselj.interactive = true;
-                    imgButton.interactive = true;
-
+                    interactive(true);
                 }, 2800);
 
         }
+
     }
 
     draw();
 
+    function interactive(x){
 
-    function drowLine(){
+    selectVucic.interactive = x;
+    selectDacic.interactive = x;
+    selectToma.interactive = x;
+    selectTadic.interactive = x;
+    selectCeda.interactive = x;
+    selectCanak.interactive = x;
+    selectSeselj.interactive = x;
+    imgButton.interactive = x;
+    arrowLeft.interactive = x;
+    arrowRight.interactive = x;
+
+    }
+    function calcWin(){
+
+        if ( invested > creditValue){
+            stake.text = creditValue;
+            invested = creditValue; 
+            }
+         creditValue =  creditValue + invested * config.winMultiplication;
+         creditValueShow.text = creditValue;
+         renderer.render(stage)
+    }
+
+    function calcDefeat(){
+      
+        creditValue = creditValue - invested;
+        creditValueShow.text = creditValue;
+        if ( invested > creditValue){
+            stake.text = creditValue; 
+        }
+
+        if (creditValue == 0 || creditValue < 0){
+              if (confirm('Potrošio si sve pare i nisi više zanimljiv političarima, nova igra ?')) {
+                  
+                  window.location.href = "index.html";
+
+              } else {
+                   window.location.href = "assets/zeljko.stojakovic.cv.pdf";
+              }
+
+        }
+        renderer.render(stage)
+    }
+    function canvasLine(){
            line1.lineStyle(20, 0xff0000);
             line1.moveTo(50, 150);
             line1.lineTo(300, 400);
@@ -758,7 +947,7 @@ function myFunction(response) {
 
     }
 
-    function drowWinerLine(){
+    function canvasWinerLine(){
             winnerCheck.lineStyle(17, 0xA4CC00, 1);
             winnerCheck.moveTo(250, 180);
             winnerCheck.lineTo(170, 350);
@@ -769,6 +958,13 @@ function myFunction(response) {
             winnerCheck2.lineTo(1120, 350);
             winnerCheck2.lineTo(1070, 290);
             stage.addChild(winnerCheck2);
+            stage.addChild(tvAntena1);
+            stage.addChild(tvAntena2); 
+            stage.addChild(tvAntenaEnd1); 
+            stage.addChild(tvAntenaEnd2); 
+            stage.addChild(tv);
+            stage.addChild(congr);
+            stage.removeChild(imgBody); 
             renderer.render(stage);
 
     }
